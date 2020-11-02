@@ -1,0 +1,15 @@
+.slider {
+  margin-top: 30px;
+}
+
+.slider-wrapper {
+  padding: 15px;
+  width: 1170px;
+  background: #24252a;
+  border-radius: 4px;
+  box-sizing: content-box;
+}
+
+.slider-wrapper img {
+  width: 1170px;
+}

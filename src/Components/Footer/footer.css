@@ -1,0 +1,106 @@
+footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #191a1b;
+  padding: 40px 15px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+}
+
+.footer-contacts-email {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #cecece;
+}
+
+.footer-contacts-email a {
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+.footer-contacts-email a:hover {
+  color: #f6d807;
+}
+
+.footer-contacts-findus {
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.footer-findus-icons {
+  margin-top: 10px;
+  display: flex;
+}
+
+.footer-findus-icon {
+  width: 30px !important;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #cecece;
+}
+
+.footer-findus-icon:hover {
+  color: #f6d807;
+}
+
+.footer-menu {
+  display: flex;
+}
+
+.footer-menu-column {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.footer-column-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.footer-column-item {
+  color: #6e7277;
+  font-weight: normal;
+  font-size: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.footer-column-item:hover {
+  text-decoration: underline;
+}
+
+.footer-copyrights {
+  color: #3f4144;
+  font-size: 12px;
+  margin-top: 50px;
+  padding-top: 15px;
+  border-top: 1px solid #2A2B30;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-copyrights-text {
+  width: 700px;
+  text-align: center;
+} 
+
+.footer-copyrights-icons {
+  display: flex;
+}
+
+.footer-copyrights-icon {
+  width: 50px !important;
+  height: 40px;
+  margin-left: 5px;
+}

@@ -1,0 +1,8 @@
+.contactPhone-time {
+  font-size: 13px;
+  color: #cecece;
+}
+
+.contactPhone-phone {
+  font-size: calc(20px + 2 * ((100vw - 980px) / 220));
+}
