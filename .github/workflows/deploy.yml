@@ -1,0 +1,62 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i
+    - run: npm run build
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.rootKey }}
+      with:
+        source: "build/*"
+        target: "arkanyx-webapp-prod/"
+        strip_components: 1
+    - name: Deploy success
+      uses: rjstone/discord-webhook-notify@v1
+      if: success()
+      with:
+          severity: info
+          username: Deployment worker
+          avatarUrl: https://sun2-3.userapi.com/TRajTVWLK_FkH4j7pRJ0N0haoDsQIwLPyO7YOg/tEfrtl-gOoY.jpg
+          details: Все заебись!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+    - name: Deploy failure
+      uses: rjstone/discord-webhook-notify@v1
+      if: failure()
+      with:
+          severity: error
+          username: Deployment worker
+          avatarUrl: https://sun2-3.userapi.com/TRajTVWLK_FkH4j7pRJ0N0haoDsQIwLPyO7YOg/tEfrtl-gOoY.jpg
+          details: У бля чет где то ебануло!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+    - name: Deploy cancelled
+      uses: rjstone/discord-webhook-notify@v1
+      if: cancelled()
+      with:
+          severity: warn
+          username: Deployment worker
+          avatarUrl: https://sun2-3.userapi.com/TRajTVWLK_FkH4j7pRJ0N0haoDsQIwLPyO7YOg/tEfrtl-gOoY.jpg
+          details: Произошла непонятная хуйня!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
