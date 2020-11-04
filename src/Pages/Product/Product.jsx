@@ -15,7 +15,7 @@ const Product = (props) => {
     bgImage,
     price,
     dimensions,
-    images,
+    // images,
   } = products[type].find((product) => product.id === Number(id));
 
   const preventSelectionHOC = (fn) => () => {
