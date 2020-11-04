@@ -1,0 +1,62 @@
+.expandable {
+  position: relative;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.expandable-gradient {
+  position: absolute;
+  margin-bottom: -300px;
+  display: block;
+  height: 300px;
+  z-index: 100;
+  position: relative;
+  background: linear-gradient(to top, #282c34 0%, rgba(42,43,48,0) 100%);
+}
+
+.expandable-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.expandable-p {
+  text-indent: 30px;
+  margin: 0 0 10px;
+  text-align: justify;
+  font-size: 18px;
+  color: #cecece;
+}
+
+.expandable li {
+  text-align: justify;
+  font-size: 18px;
+  color: #cecece;
+}
+
+.expandable-images {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.expandable-images img {
+  width: 390px;
+}
+
+.expandable-button {
+  color: #f6d807;
+  cursor: pointer;
+}
+
+.expandable-button:hover {
+  text-decoration: underline;
+}
+
+.expandable-closed {
+  height: 300px;
+  overflow: hidden;
+}

@@ -1,0 +1,132 @@
+.product {
+  width: 100%;
+}
+
+.product header {
+  width: 100%;
+  align-items: center;
+}
+
+.product .header-row {
+  width: 1200px;
+}
+
+.product-jumbotron {
+  width: 100%;
+  height: 500px;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.product-container {
+  width: 1200px;
+  padding: 40px 0 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-info {
+  width: 700px;
+}
+
+.product-info-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.product-info-description {
+  font-size: 16px;
+  color: #cecece;
+}
+
+.product-info-sections {
+  margin-top: 50px;
+}
+
+.product-info-section {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.product-info-section:last-child {
+  border: none;
+}
+
+.product-section-title {
+  font-weight: bold;
+  color: #f6d807;
+  width: 200px;
+}
+
+.product-section-description {
+  width: 500px;
+  color: #cecece;
+}
+
+
+.product-addToCart {
+  background-color: #242429;
+  height: 100%;
+  padding: 20px;
+}
+
+.product-addToCart-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-addToCart-model, .product-addToCart-price {
+  color: #f6d807;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-counter-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-counter-input {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.product-counter-control {
+  background: #f6d807;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #131415;
+  cursor: pointer;
+}
+
+.product-counter-input input {
+  outline: none;
+  border: none;
+  font-size: 16px;
+  padding: 5px 12px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.product-addToCart-dimensions {
+  font-style: italic;
+  color: #cecece;
+  margin-bottom: 15px;
+}
+
+.product-addToCart-button {
+  color: #131415;
+  background: #dfc207;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: center;
+  width: 300px;
+  cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.gridItem {
+  position: relative;
+  width: 385px;
+  display: flex;
+  flex-direction: column;
+}
+
+.gridItem::after {
+  content: 'Подробнее';
+  position: absolute;
+  bottom: 80px;
+  right: -10px;
+  background: rgba(0,0,0,0.7);
+  padding: 15px 10px;
+  text-align: center;
+  color: #f6d807;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  transition: .5s;
+}
+
+.gridItem:hover::after {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.gridItem img {
+  width: 100%;
+  padding: 15px;
+  background: #24252a;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.gridItem-info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #f6d807;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.gridItem-title {
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.gridItem-title:hover {
+  color: #f6d807;
+}
+
+.gridItem a {
+  color: inherit;
+  text-decoration: inherit;
+}

@@ -1,12 +1,16 @@
 import { Base } from '..';
-import { HomeGrid, Slider } from '../../Components';
+import { Expandable, HomeGrid, Slider } from '../../Components';
 import './home.css';
 
 const Home = (props) => {
+  const { products } = props;
+
   return (
     <Base>
       <Slider />
-      <HomeGrid />
+      <HomeGrid items={products['panel']} type="panel" title="3D гипсовые панели" />
+      <HomeGrid items={products['relief']} type="relief" title="Барельефы" />
+      <Expandable />
     </Base>
   );
 };
