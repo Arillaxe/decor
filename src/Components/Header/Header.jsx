@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ContactPhone } from '..';
 import './header.css';
@@ -12,13 +13,15 @@ const Header = (props) => {
           <div className="header-questions-phone">+7 (985) 33 66 999</div>
         </div>
         <div className="header-payment">Доставка и оплата</div>
-        <div className="header-cart">
-          <div className="header-cart-icon">
-            <FontAwesomeIcon icon="shopping-cart" />
-            <div className="header-cart-counter">0</div>
+        <Link to="/cart">
+          <div className="header-cart">
+            <div className="header-cart-icon">
+              <FontAwesomeIcon icon="shopping-cart" />
+              <div className="header-cart-counter">1</div>
+            </div>
+            <div className="header-cart-button">Корзина</div>
           </div>
-          <div className="header-cart-button">Корзина</div>
-        </div>
+        </Link>
       </div>
       <div className="header-row">
         <div className="header-menu">

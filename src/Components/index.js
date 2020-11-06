@@ -1,3 +1,4 @@
+export { default as CategoryGrid } from './CategoryGrid';
 export { default as ContactPhone } from './ContactPhone';
 export { default as Expandable } from './Expandable';
 export { default as Footer } from './Footer';

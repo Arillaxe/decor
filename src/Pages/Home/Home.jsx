@@ -9,7 +9,7 @@ const Home = (props) => {
     <Base>
       <Slider />
       <HomeGrid items={products['panel']} type="panel" title="3D гипсовые панели" />
-      <HomeGrid items={products['relief']} type="relief" title="Барельефы" />
+      <HomeGrid items={products['basreliefs']} type="basreliefs" title="Барельефы" />
       <Expandable />
     </Base>
   );

@@ -8,3 +8,7 @@
   align-items: center;
   color: white;
 }
+
+.react-viewer-mask {
+  background-color: rgba(55, 55, 55, 0.8);
+}

@@ -42,6 +42,11 @@ header .contactPhone, .header-questions {
   display: flex;
 }
 
+header a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .header-cart-button {
   display: flex;
   justify-content: center;

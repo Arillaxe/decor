@@ -141,7 +141,7 @@ const products = {
       ],
     },
   ],
-  relief: [
+  basreliefs: [
     {
       id: 1,
       title: 'B-01',
