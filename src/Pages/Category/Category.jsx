@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { Base } from '..';
-import { Expandable, CategoryGrid } from '../../Components';
+import { CategoryGrid } from '../../Components';
 import categoryMappings from '../../categoryMappings';
 import './category.css';
 
