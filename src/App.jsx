@@ -12,9 +12,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTop } from './Components';
 import {
-  Category,
+  About,
   Cart,
+  Category,
+  Contacts,
+  Gallery,
   Home,
+  Order,
   Product,
 } from './Pages';
 import products from './data';
@@ -39,6 +43,18 @@ const App = () => {
           </Route>
           <Route path="/cart">
             <Cart items={[products.panel[0], products.basreliefs[0]]} />
+          </Route>
+          <Route path="/order">
+            <Order />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contacts">
+            <Contacts />
+          </Route>
+          <Route path="/gallery">
+            <Gallery />
           </Route>
         </Switch>
       </Router>

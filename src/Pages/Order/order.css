@@ -1,9 +1,9 @@
-.category {
+.order {
   width: 1200px;
+  padding-top: 20px;
 }
 
-.category-title {
-  margin-top: 20px;
+.order-title {
   font-size: 36px;
   font-weight: bold;
 }

@@ -28,19 +28,6 @@ const Footer = (props) => {
             <div className="footer-column-item">Галерея</div>
           </div>
           <div className="footer-menu-column">
-            <div className="footer-column-title">Информация</div>
-            <div className="footer-column-item">Доставка и оплата</div>
-            <div className="footer-column-item">Гарантия и возврат</div>
-            <div className="footer-column-item">Производство</div>
-            <div className="footer-column-item">Монтаж 3Д панелей</div>
-          </div>
-          <div className="footer-menu-column">
-            <div className="footer-column-title">Партнерам</div>
-            <div className="footer-column-item">Строительным организациям</div>
-            <div className="footer-column-item">Дизайнерам</div>
-            <div className="footer-column-item">Дилерам</div>
-          </div>
-          <div className="footer-menu-column">
             <div className="footer-column-title">Каталог</div>
             <div className="footer-column-item">Принтография</div>
             <div className="footer-column-item">Гипсовые 3D панели</div>

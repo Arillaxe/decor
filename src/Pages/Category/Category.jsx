@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Base } from '..';
-import { CategoryGrid } from '../../Components';
+import { Breadcrumbs, CategoryGrid } from '../../Components';
 import categoryMappings from '../../categoryMappings';
 import './category.css';
 
@@ -12,12 +12,15 @@ const Category = (props) => {
     <Base>
       <div className="category">
         <div className="category-title">{categoryMappings[type]}</div>
-        <div className="category-breadcrumbs">
-          <Link to="/">
-            <div className="category-breadcrumb">Главная</div>
-          </Link>/
-          <div className="category-breadcrumb inactive">{categoryMappings[type]}</div>
-        </div>
+        <Breadcrumbs items={[
+          {
+            title: 'Главная',
+            link: '/',
+          },
+          {
+            title: categoryMappings[type],
+          }
+        ]} />
         <CategoryGrid items={products[type]} type={type} />
       </div>
     </Base>

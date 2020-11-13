@@ -34,31 +34,6 @@
   font-weight: bold;
 }
 
-.product-info-breadcrumbs {
-  display: flex;
-  margin-bottom: 20px;
-  color: #8a8c92;
-  font-size: 13px;
-  margin-left: -5px;
-}
-
-.product-info-breadcrumbs a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-.product-breadcrumb {
-  margin: 0 5px;
-}
-
-.product-breadcrumb:hover {
-  text-decoration: underline;
-}
-
-.product-breadcrumb.inactive:hover {
-  text-decoration: none;
-}
-
 .product-info-description {
   font-size: 16px;
   color: #cecece;

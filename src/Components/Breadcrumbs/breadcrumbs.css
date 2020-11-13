@@ -1,0 +1,31 @@
+.breadcrumbs {
+  display: flex;
+  margin-bottom: 20px;
+  color: #8a8c92;
+  font-size: 13px;
+  margin-left: -10px;
+}
+
+.breadcrumbs a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.breadcrumb {
+  position: relative;
+  margin: 0 10px;
+}
+
+.breadcrumb:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs > .breadcrumb:hover {
+  text-decoration: none;
+}
+
+.breadcrumbs a:not(:last-child) .breadcrumb::after {
+  content: '/';
+  position: absolute;
+  right: -13px;
+}

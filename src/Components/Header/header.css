@@ -8,6 +8,26 @@ header {
 
 .header-row {
   display: flex;
+  align-items: center;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  align-items: center;
+}
+
+.header-title-big {
+  color: #f6d807;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.header-title-small {
+  color: #f6d807;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 header .contactPhone, .header-questions {
@@ -25,17 +45,6 @@ header .contactPhone, .header-questions {
 
 .header-questions {
   margin-right: auto;
-}
-
-.header-payment {
-  margin-right: 35px;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 15px 15px;
-  border: 1px solid #f6d807;
-  color: #f6d807;
-  background: transparent;
-  cursor: pointer;
 }
 
 .header-cart {
@@ -67,6 +76,10 @@ header a {
   width: 50px;
   height: 50px;
   background: #131415;
+}
+
+.header-cart:hover .header-cart-fa {
+  color: #f6d807;
 }
 
 .header-cart-counter {

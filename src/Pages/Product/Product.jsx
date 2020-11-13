@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Viewer from 'react-viewer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Base } from '..';
+import { Breadcrumbs } from '../../Components';
 import categoryMappings from '../../categoryMappings';
 import './product.css';
 
@@ -53,15 +54,19 @@ const Product = (props) => {
         <div className="product-container">
           <div className="product-info">
             <div className="product-info-title">{title}</div>
-            <div className="product-info-breadcrumbs">
-              <Link to="/">
-                <div className="product-breadcrumb">Главная</div>
-              </Link>/
-              <Link to={`/product/${type}`}>
-                <div className="product-breadcrumb">{categoryMappings[type]}</div>
-              </Link>/
-              <div className="product-breadcrumb inactive">{title}</div>
-            </div>
+            <Breadcrumbs items={[
+              {
+                title: 'Главная',
+                link: '/',
+              },
+              {
+                title: categoryMappings[type],
+                link: `/product/${type}`,
+              },
+              {
+                title,
+              }
+            ]} />
             <div className="product-info-description">{description}</div>
             <div className="product-info-sections">
               <div className="product-info-section">
