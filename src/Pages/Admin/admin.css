@@ -1,0 +1,33 @@
+.admin {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.admin-loggedIn {
+  width: 1200px;
+  background: #24252a;
+  border-radius: 5px;
+  margin: 50px;
+}
+
+.admin-tabs {
+  display: flex;
+  border-bottom: 1px solid #f6d807;
+}
+
+.admin-tab {
+  padding: 15px 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-tab:first-child {
+  border-top-left-radius: 5px;
+}
+
+.admin-tab.active {
+  background: #f6d807;
+  color: #333;
+}

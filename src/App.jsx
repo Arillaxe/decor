@@ -1,3 +1,4 @@
+import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,7 @@ import {
 import { ScrollToTop } from './Components';
 import {
   About,
+  Admin,
   Cart,
   Category,
   Contacts,
@@ -21,6 +23,7 @@ import {
   Order,
   Product,
 } from './Pages';
+import store from './lib/store';
 import products from './data';
 import './App.css';
 
@@ -28,37 +31,42 @@ library.add(fab, faShoppingCart, faPlus, faMinus);
 
 const App = () => {
   return (
-    <div className="App">
-      <Router>
-        <ScrollToTop />
-        <Switch>
-          <Route path="/" exact>
-            <Home products={products} />
-          </Route>
-          <Route path="/product/:type/:id">
-            <Product products={products} />
-          </Route>
-          <Route path="/product/:type">
-            <Category products={products} />
-          </Route>
-          <Route path="/cart">
-            <Cart items={[products.panel[0], products.basreliefs[0]]} />
-          </Route>
-          <Route path="/order">
-            <Order />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contacts">
-            <Contacts />
-          </Route>
-          <Route path="/gallery">
-            <Gallery />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <ScrollToTop />
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/product/:type/:id">
+              <Product products={products} />
+            </Route>
+            <Route path="/product/:type">
+              <Category products={products} />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/order">
+              <Order />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contacts">
+              <Contacts />
+            </Route>
+            <Route path="/gallery">
+              <Gallery />
+            </Route>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </Provider>
   );
 };
 

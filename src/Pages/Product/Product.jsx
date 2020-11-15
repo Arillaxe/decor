@@ -21,7 +21,7 @@ const Product = (props) => {
     price,
     dimensions,
     images,
-  } = products[type].find((product) => product.id === Number(id));
+  } = products.find((product) => product.id === Number(id));
 
   const preventSelectionHOC = (fn) => () => {
     if (document.selection && document.selection.empty) {

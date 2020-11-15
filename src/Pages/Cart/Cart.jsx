@@ -1,9 +1,21 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Base } from '..';
 import { Breadcrumbs} from '../../Components';
 import './cart.css';
 
-const Cart = (props) => {
-  const { items } = props;
+import slice from './slice';
+
+const { actions } = slice;
+
+const Cart = () => {
+  const dispatch = useDispatch();
+  const items = useSelector(({ cart }) => cart.items);
+  const products = useSelector(({ home }) => home.products);
+
+  useEffect(() => {
+    dispatch(actions.addItem(products[0]));
+  }, [dispatch, products]);
 
   return (
     <Base>

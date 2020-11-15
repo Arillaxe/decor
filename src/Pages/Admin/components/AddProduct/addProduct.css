@@ -1,0 +1,99 @@
+.addProduct {
+  padding: 30px;
+}
+
+.addProduct-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.addProduct-form {
+  width: 300px;
+}
+
+.addProduct-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.addProduct-input label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.addProduct-input input, .addProduct-input textarea, .addProduct-input select {
+  font-size: 18px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+}
+
+.addProduct-input textarea {
+  height: 100px;
+}
+
+.addProduct-submit {
+  background: #f6d807;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.addProduct-existing {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.addProduct-existing-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.addProduct-existing-product {
+  display: flex;
+  padding: 20px 0;
+  border-bottom: 1px solid #CECECE;
+}
+
+.addProduct-existing-product:last-child {
+  border-bottom: none;
+}
+
+.addProduct-existing-name {
+  font-weight: bold;
+}
+
+.addProduct-existing-info {
+  margin-right: 50px;
+}
+
+.addProduct-existing-info img {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  background:#282c34;
+  border-radius: 4px;
+}
+
+.addProduct-existing-details div {
+  margin-bottom: 5px;
+}
+
+.addProduct-existing-details {
+  margin-right: 50px;
+}
+
+.addProduct-existing-remove {
+  margin: auto 30px auto auto;
+  font-weight: bold;
+  color: #f6d807;
+  cursor: pointer;
+}

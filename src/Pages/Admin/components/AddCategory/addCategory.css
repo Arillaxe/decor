@@ -1,0 +1,73 @@
+.addCategory {
+  padding: 30px;
+}
+
+.addCategory-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.addCategory-form {
+  width: 300px;
+}
+
+.addCategory-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.addCategory-input label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.addCategory-input input {
+  font-size: 18px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+}
+
+.addCategory-error {
+  font-size: 14px;
+  color: #dc3545;
+}
+
+.addCategory-submit {
+  background: #f6d807;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.addCategory-existing {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.addCategory-existing-title {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.addCategory-existing-category {
+  display: flex;
+  padding: 5px 0;
+}
+
+.addCategory-existing-name {
+  width: 200px;
+}
+
+.addCategory-existing-remove {
+  font-weight: bold;
+  color: #f6d807;
+  cursor: pointer;
+}
