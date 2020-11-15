@@ -10,7 +10,6 @@
     "@fortawesome/react-fontawesome": "^0.1.12",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.21.0",
-    "config": "^3.3.2",
     "express": "^4.17.1",
     "mongoose": "^5.10.14",
     "react": "^17.0.1",
