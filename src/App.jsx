@@ -5,7 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faShoppingCart,
   faPlus,
@@ -27,7 +26,7 @@ import store from './lib/store';
 import products from './data';
 import './App.css';
 
-library.add(fab, faShoppingCart, faPlus, faMinus);
+library.add(faShoppingCart, faPlus, faMinus);
 
 const App = () => {
   return (

@@ -1,23 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ContactPhone } from '..';
 import './footer.css';
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <footer>
       <div className="footer-container">
         <div className="footer-contacts">
           <ContactPhone />
           <div className="footer-contacts-email">
-            <a href="mailto:info@decorproducts.ru">info@decorproducts.ru</a> - по всем вопросам
-          </div>
-          <div className="footer-contacts-findus">
-            <div className="footer-findus-title">Ищите нас здесь:</div>
-            <div className="footer-findus-icons">
-              <FontAwesomeIcon icon={['fab' ,'vk']} className="footer-findus-icon" />
-              <FontAwesomeIcon icon={['fab', 'instagram']} className="footer-findus-icon" />
-              <FontAwesomeIcon icon={['fab', 'facebook']} className="footer-findus-icon" />
-            </div>
+            <a href="mailto:info@decorproducts.ru">3ddecorcrimea@mail.ru</a> - по всем вопросам
           </div>
         </div>
         <div className="footer-menu">
@@ -38,15 +29,11 @@ const Footer = (props) => {
       </div>
       <div className="footer-container footer-copyrights">
         <div className="footer-copyrights-copy">
-          <div>©2010-2017 Deco Line™</div>
+          <div>©2020 3D Decor Crimea™</div>
           <div>Официальный сайт</div>
         </div>
         <div className="footer-copyrights-text">
           Все материалы данного сайта являются объектами авторского права. Запрещается копирование, распространение или любое иное использование информации и объектов.
-        </div>
-        <div className="footer-copyrights-icons">
-          <FontAwesomeIcon icon={['fab' ,'cc-visa']} className="footer-copyrights-icon" />
-          <FontAwesomeIcon icon={['fab' ,'cc-mastercard']} className="footer-copyrights-icon" />
         </div>
       </div>
     </footer>

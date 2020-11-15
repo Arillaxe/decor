@@ -35,7 +35,7 @@
 }
 
 .addProduct-submit {
-  background: #f6d807;
+  background: #f78888;
   color: #333;
   font-weight: bold;
   font-size: 18px;
@@ -94,6 +94,6 @@
 .addProduct-existing-remove {
   margin: auto 30px auto auto;
   font-weight: bold;
-  color: #f6d807;
+  color: #f78888;
   cursor: pointer;
 }

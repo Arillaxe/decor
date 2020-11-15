@@ -26,7 +26,7 @@ footer {
 }
 
 .footer-contacts-email a:hover {
-  color: #f6d807;
+  color: #f78888;
 }
 
 .footer-contacts-findus {
@@ -49,7 +49,7 @@ footer {
 }
 
 .footer-findus-icon:hover {
-  color: #f6d807;
+  color: #f78888;
 }
 
 .footer-menu {
@@ -81,13 +81,19 @@ footer {
 }
 
 .footer-copyrights {
+  position: relative;
   color: #3f4144;
   font-size: 12px;
   margin-top: 50px;
   padding-top: 15px;
   border-top: 1px solid #2A2B30;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.footer-copyrights-copy {
+  position: absolute;
+  left: 0;
 }
 
 .footer-copyrights-text {

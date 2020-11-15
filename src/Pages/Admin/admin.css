@@ -7,14 +7,14 @@
 
 .admin-loggedIn {
   width: 1200px;
-  background: #24252a;
+  background: #2c3033;
   border-radius: 5px;
   margin: 50px;
 }
 
 .admin-tabs {
   display: flex;
-  border-bottom: 1px solid #f6d807;
+  border-bottom: 1px solid #f78888;
 }
 
 .admin-tab {
@@ -28,6 +28,6 @@
 }
 
 .admin-tab.active {
-  background: #f6d807;
+  background: #f78888;
   color: #333;
 }

@@ -68,28 +68,6 @@ const Product = (props) => {
               }
             ]} />
             <div className="product-info-description">{description}</div>
-            <div className="product-info-sections">
-              <div className="product-info-section">
-                <div className="product-section-title">Доставка</div>
-                <div className="product-section-description">
-                  Доставка по Москве - в течение 2 дней
-                  Доставка по всей России - в течение 2-5 дней
-                  Самовывоз на следующий день после заказа
-                </div> 
-              </div>
-              <div className="product-info-section">
-                <div className="product-section-title">100% Гарантия</div>
-                <div className="product-section-description">
-                  При отправке вся продукция Deco Line страхуется. Поврежденный товар будет бесплатно заменен.
-                </div> 
-              </div>
-              <div className="product-info-section">
-                <div className="product-section-title">Оплата</div>
-                <div className="product-section-description">
-                  Отгрузка товара происходит по 100% предоплате.
-                </div> 
-              </div>
-            </div>
           </div>
           <div className="product-addToCart">
             <div className="product-addToCart-row">

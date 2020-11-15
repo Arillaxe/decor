@@ -9,7 +9,7 @@
 }
 
 .cart-title-counter {
-  color: #f6d807;
+  color: #f78888;
   font-size: 16px;
 }
 
@@ -34,7 +34,7 @@
   width: 100px;
   height: 100px;
   padding: 10px;
-  background: #24252a;
+  background: #2c3033;
   border-radius: 4px;
   margin-bottom: 10px;
 }
@@ -60,7 +60,7 @@
 .cart-prices-cost {
   font-weight: bold;
   font-size: 18px;
-  color: #f6d807;
+  color: #f78888;
 }
 
 .cart-item-remove {
@@ -71,7 +71,7 @@
 }
 
 .cart-item-remove:hover {
-  color: #f6d807;
+  color: #f78888;
 }
 
 .cart-totals {
@@ -89,11 +89,11 @@
 
 .cart-total-highlighted {
   font-weight: bold;
-  color: #f6d807;
+  color: #f78888;
 }
 
 .cart-makeOrder {
-  background: #f6d807;
+  background: #f78888;
   color: #131415;
   font-size: 18px;
   padding: 20px 0;
@@ -111,7 +111,7 @@
 
 .cart-makeOrder:hover {
   color: #131415;
-  background: #dfc207;
+  background: #db7b7b;
 }
 
 .cart-order {
