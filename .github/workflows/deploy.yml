@@ -31,7 +31,7 @@ jobs:
         KEY: ${{ secrets.rootKey }}
       with:
         source: "build/*"
-        target: "arkanyx-webapp-prod/"
+        target: ${{ secrets.UPLOAD_PATH }}
         strip_components: 1
     - name: Deploy success
       uses: rjstone/discord-webhook-notify@v1
