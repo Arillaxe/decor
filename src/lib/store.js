@@ -1,13 +1,19 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
-import { slice as homeSlice } from '../Pages/Home';
-import { slice as cartSlice } from '../Pages/Cart';
+import {
+  cartSlice, 
+  categoriesSlice,
+  homeGridsSlice,
+  productsSlice,
+} from '../slices';
 
 const store = configureStore({
   reducer: {
-    home: homeSlice.reducer,
     cart: cartSlice.reducer,
+    categories: categoriesSlice.reducer,
+    homeGrids: homeGridsSlice.reducer,
+    products: productsSlice.reducer,
   },
   middleware: [...getDefaultMiddleware(), logger],
   devTools: process.env.NODE_ENV !== 'production',

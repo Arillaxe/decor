@@ -31,3 +31,14 @@
   background: #f78888;
   color: #333;
 }
+
+.admin-tab.logout {
+  margin-left: auto;
+  transition: .1s;
+  border-top-right-radius: 5px;
+}
+
+.admin-tab.logout:hover {
+  background: #f78888;
+  color: #333;
+}

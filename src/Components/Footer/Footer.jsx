@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ContactPhone } from '..';
 import './footer.css';
 
 const Footer = () => {
+  const categories = useSelector(({ categories }) => categories);
+
   return (
     <footer>
       <div className="footer-container">
@@ -14,16 +18,23 @@ const Footer = () => {
         <div className="footer-menu">
           <div className="footer-menu-column">
             <div className="footer-column-title">О компании</div>
-            <div className="footer-column-item">О компании</div>
-            <div className="footer-column-item">Контакты</div>
-            <div className="footer-column-item">Галерея</div>
+            <Link to="/about">
+              <div className="footer-column-item">О компании</div>
+            </Link>
+            <Link to="/contacts">
+              <div className="footer-column-item">Контакты</div>
+            </Link>
+            <Link to="/gallery">
+              <div className="footer-column-item">Галерея</div>
+            </Link>
           </div>
           <div className="footer-menu-column">
             <div className="footer-column-title">Каталог</div>
-            <div className="footer-column-item">Принтография</div>
-            <div className="footer-column-item">Гипсовые 3D панели</div>
-            <div className="footer-column-item">Барельеф</div>
-            <div className="footer-column-item">Декор интерьера</div>
+            {categories.map(({ _id, title, name }) => (
+              <Link to={`/product/${name}`}>
+                <div key={_id} className="footer-column-item">{title}</div>
+               </Link>
+            ))}
           </div>
         </div>
       </div>

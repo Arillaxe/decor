@@ -103,6 +103,7 @@ header a {
 }
 
 .header-menu-item {
+  position: relative;
   font-weight: bold;
   line-height: 60px;
   font-size: 16px;
@@ -111,4 +112,27 @@ header a {
 
 .header-menu-item:first-child {
   margin-left: 0;
+}
+
+.header-dropdown {
+  height: 0px;
+  width: 250px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.9);
+  transition: .1s;
+}
+
+.header-dropdown-item {
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.header-dropdown-item:hover {
+  color: #f78888;
+}
+
+.header-menu-item.dropdown:hover .header-dropdown {
+  height: 120px;
 }

@@ -1,27 +1,44 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import config from '../../config';
 import { Base } from '..';
 import { Expandable, HomeGrid, Slider } from '../../Components';
-import data from '../../data';
+import { homeGridsSlice, productsSlice } from '../../slices';
 import './home.css';
 
-import slice from './slice';
-
-const { actions } = slice;
+const { actions: homeGridsActions } = homeGridsSlice;
+const { actions: productsActions } = productsSlice;
+const { host } = config;
 
 const Home = () => {
   const dispatch = useDispatch();
-  const products = useSelector(({ home }) => home.products);
+  const homeGrids = useSelector(({ homeGrids }) => homeGrids);
+  const products = useSelector(({ products }) => products);
 
   useEffect(() => {
-    dispatch(actions.setProducts(data));
+    const fetchData = async () => {
+      const { data } = await axios.get(`${host}/homeGrid`);
+
+      const homeGrids = data.homeGrids.map((homeGrid) => {
+        dispatch(productsActions.addProducts(homeGrid.products));
+
+        return { ...homeGrid, products: homeGrid.products.map((product) => product._id) };
+      });
+
+      dispatch(homeGridsActions.setHomeGrids(homeGrids));
+    };
+
+    fetchData();
+
   }, [dispatch]);
   
   return (
     <Base>
       <Slider />
-      <HomeGrid items={products.filter((product) => product.type === 'panel')} type="panel" title="3D гипсовые панели" />
-      <HomeGrid items={products.filter((product) => product.type === 'basreliefs')} type="basreliefs" title="Барельефы" />
+      {homeGrids.map(({ _id, title, products: homeGridProducts }) => (
+        <HomeGrid key={_id} items={products.filter(({ _id }) => homeGridProducts.includes(_id))} type="panel" title={title} />
+      ))}
       <Expandable />
     </Base>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   AddCategory,
+  AddHomeGrid,
   AddProduct,
   Login,
   Orders,
@@ -13,6 +14,11 @@ const Admin = () => {
 
   const tabSelector = (tab) => () => setTab(tab);
 
+  const logOut = () => {
+    setLoggedIn(false);
+    localStorage.setItem('token', '');
+  };
+
   return (
     <div className="admin">
     {!loggedIn && (
@@ -24,10 +30,13 @@ const Admin = () => {
           <div className={`admin-tab ${tab === 'orders' && 'active'}`} onClick={tabSelector('orders')}>Заказы</div>
           <div className={`admin-tab ${tab === 'addProduct' && 'active'}`} onClick={tabSelector('addProduct')}>Товары</div>
           <div className={`admin-tab ${tab === 'addCategory' && 'active'}`} onClick={tabSelector('addCategory')}>Категории</div>
+          <div className={`admin-tab ${tab === 'addHomeGrid' && 'active'}`} onClick={tabSelector('addHomeGrid')}>Лидеры продаж</div>
+          <div className="admin-tab logout" onClick={logOut}>Выход</div>
         </div>
-        {tab === 'addCategory' && (<AddCategory />)}
-        {tab === 'addProduct' && (<AddProduct />)}
         {tab === 'orders' && (<Orders />)}
+        {tab === 'addProduct' && (<AddProduct />)}
+        {tab === 'addCategory' && (<AddCategory />)}
+        {tab === 'addHomeGrid' && (<AddHomeGrid />)}
       </div>
     )}
     </div>

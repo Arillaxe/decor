@@ -1,9 +1,55 @@
-.orders {
+.admin-orders {
   padding: 30px;
   font-size: 18px;
 }
 
-.orders-title {
+.admin-orders-title {
   font-weight: bold;
   font-size: 32px;
+}
+
+.admin-orders-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-order {
+  position: relative;
+  display: flex;
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.admin-order div {
+  flex: 1;
+}
+
+.admin-order.header {
+  border-bottom: 1px solid #CECECE;
+}
+
+.admin-order-product {
+  display: flex;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.admin-order-comment {
+  padding-right: 40px;
+}
+
+.admin-order-remove {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background: #dc3545;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

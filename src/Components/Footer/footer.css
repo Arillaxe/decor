@@ -8,6 +8,10 @@ footer {
   padding: 40px 15px;
 }
 
+footer a {
+  text-decoration: initial;
+}
+
 .footer-container {
   display: flex;
   justify-content: space-between;

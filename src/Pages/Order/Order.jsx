@@ -6,7 +6,7 @@ const Order = () => {
   return (
     <Base>
       <div className="order">
-        <div className="order-title">Оформление заказа</div>
+        <div className="order-title">Ваш заказ принят</div>
         <Breadcrumbs items={[
           {
             title: 'Главная',
@@ -20,6 +20,7 @@ const Order = () => {
             title: 'Оформление заказа',
           }
         ]} />
+        <div className="order-details">В ближайшее время наш сотрудник свяжется с вами для потверждения вашего заказа</div>
       </div>
     </Base>
   );

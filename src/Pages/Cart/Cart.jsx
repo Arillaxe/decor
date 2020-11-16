@@ -1,26 +1,89 @@
-import { useEffect } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import config from '../../config';
 import { Base } from '..';
 import { Breadcrumbs} from '../../Components';
+import { cartSlice } from '../../slices';
 import './cart.css';
 
-import slice from './slice';
-
-const { actions } = slice;
+const { host } = config;
+const { actions } = cartSlice;
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const items = useSelector(({ cart }) => cart.items);
-  const products = useSelector(({ home }) => home.products);
+  const history = useHistory();
+  const items = useSelector(({ cart }) => cart);
+  const [fields, setFields] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    comment: '',
+  });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(actions.addItem(products[0]));
-  }, [dispatch, products]);
+    dispatch(actions.setItems(JSON.parse(localStorage.getItem('cart')) || []));
+  }, [dispatch]);
+
+  const aggregatedProducts = items.reduce((aggregated, product) => {
+    const existing = aggregated.find(({ product: { _id } }) => _id === product._id);
+
+    if (existing) {
+      existing.amount++;
+    } else {
+      aggregated.push({ amount: 1, product });
+    }
+
+    return aggregated;
+  }, []);
+
+  const totalPrice = aggregatedProducts.reduce((total, { amount, product }) => total + amount * product.price, 0).toFixed(2);
+
+  const removeFromCart = (id) => () => {
+    dispatch(actions.setItems(items.filter(({ _id }) => _id !== id)));
+  };
+
+  const updateField = (field) => (e) => {
+    setFields({ ...fields, [field]: e.target.value });
+  };
+
+  const submit = async () => {
+    if (loading) return;
+    
+    const requiredFields = [
+      'name',
+      'phone',
+      'address',
+    ];
+
+    for (let field of requiredFields) {
+      if (!fields[field]) return setError('Пожалуйста, заполните все поля отмеченные звездочкой');
+    }
+
+    setLoading(true);
+
+    await axios.put(`${host}/order`, { 
+      ...fields,
+      products: items.map(({ _id }) => _id),
+    }, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      },
+    });
+
+    dispatch(actions.setItems([]));
+    history.push('/order');
+  };
 
   return (
     <Base>
       <div className="cart">
-        <div className="cart-title">Корзина / <span className="cart-title-counter">1 шт.</span></div>
+        <div className="cart-title">Корзина {!!items.length && (<Fragment>/ <span className="cart-title-counter">{items.length} шт.</span></Fragment>)}</div>
         <Breadcrumbs items={[
           {
             title: 'Главная',
@@ -31,49 +94,62 @@ const Cart = () => {
           }
         ]} />
         <div className="cart-items">
-        {items.map((item) => (
-          <div className="cart-item" key={item.id + item.title}>
+        {!items.length && (
+          <div className="cart-empty">В вашей корзине ничего нет</div>
+        )}
+        {aggregatedProducts.map(({ amount, product }) => (
+          <div className="cart-item" key={product._id}>
             <div className="cart-item-info">
-              <img src={item.imageURL} alt=""/>
-              <div className="cart-item-title">Модель {item.title}</div>
+              <img src={product.imageURL} alt=""/>
+              <div className="cart-item-title">Модель {product.title}</div>
             </div>
             <div className="cart-item-prices">
               <div className="cart-prices-heading">Количество</div>
-              <div className="cart-prices-count">25</div>
-              <div className="cart-prices-price">{item.price}</div>
-              <div className="cart-prices-cost">Итого: 2099.75 Р</div>
-              <div className="cart-item-remove">Удалить</div>
+              <div className="cart-prices-count">{amount}</div>
+              <div className="cart-prices-price">{product.price} Р/шт</div>
+              <div className="cart-prices-cost">{(product.price * amount).toFixed(2)} Р</div>
+              <div className="cart-item-remove" onClick={removeFromCart(product._id)}>Удалить</div>
             </div>
           </div>
         ))}
         </div>
-        <div className="cart-totals">
-          <div className="cart-total">Итого: <span className="cart-total-highlighted">38913.95 Р</span></div>
-        </div>
-        <div className="cart-order">
-          <div className="cart-order-title">Оформление заказа</div>
-          <div className="cart-order-input">
-            <label htmlFor="order-name">Как вас зовут?</label>
-            <input id="order-name" type="text" placeholder="Фамилия Имя Отчество" />
-          </div>
-          <div className="cart-order-input">
-            <label htmlFor="order-email">Электонная почта:</label>
-            <input id="order-email" type="email" placeholder="example@mail.ru" />
-          </div>
-          <div className="cart-order-input">
-            <label htmlFor="order-tel">Телефон:</label>
-            <input id="order-tel" type="text" placeholder="+79999999999" />
-          </div>
-          <div className="cart-order-input">
-            <label htmlFor="order-address">Адрес доставки:</label>
-            <input id="order-address" type="text" placeholder="Город, улица, дом, корпус, квартира" />
-          </div>
-          <div className="cart-order-input textarea">
-            <label htmlFor="order-comment">Комментарий:</label>
-            <textarea id="order-comment" placeholder="Комментарий по доставке"></textarea>
-          </div>
-          <div className="cart-makeOrder">Оформить</div>
-        </div>
+        {!!items.length && (
+          <Fragment>
+            <div className="cart-totals">
+              <div className="cart-total">Итого: <span className="cart-total-highlighted">{totalPrice} Р</span></div>
+            </div>
+            <div className="cart-order">
+              <div className="cart-order-title">Оформление заказа</div>
+              {error && (
+                <div className="cart-order-error">{error}</div>
+              )}
+              <div className="cart-order-input">
+                <label htmlFor="order-name">Как вас зовут?</label>
+                <input id="order-name" type="text" placeholder="Фамилия Имя Отчество" onChange={updateField('name')}/>
+                <FontAwesomeIcon icon="asterisk" className="cart-input-required"/>
+              </div>
+              <div className="cart-order-input">
+                <label htmlFor="order-email">Электонная почта:</label>
+                <input id="order-email" type="email" placeholder="example@mail.ru" onChange={updateField('email')}/>
+              </div>
+              <div className="cart-order-input">
+                <label htmlFor="order-tel">Телефон:</label>
+                <input id="order-tel" type="text" placeholder="+79999999999" onChange={updateField('phone')}/>
+                <FontAwesomeIcon icon="asterisk" className="cart-input-required"/>
+              </div>
+              <div className="cart-order-input">
+                <label htmlFor="order-address">Адрес доставки:</label>
+                <input id="order-address" type="text" placeholder="Город, улица, дом, корпус, квартира" onChange={updateField('address')}/>
+                <FontAwesomeIcon icon="asterisk" className="cart-input-required"/>
+              </div>
+              <div className="cart-order-input textarea">
+                <label htmlFor="order-comment">Комментарий:</label>
+                <textarea id="order-comment" placeholder="Комментарий по доставке" onChange={updateField('comment')}></textarea>
+              </div>
+              <div className="cart-makeOrder" onClick={submit}>Оформить</div>
+            </div>
+          </Fragment>
+        )}
       </div>
     </Base>
   );

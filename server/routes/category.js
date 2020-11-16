@@ -9,15 +9,15 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/', verifyToken, async (req, res) => {
-  const { name } = req.body;
+  const { name = '', title = '' } = req.body;
 
-  if (!name || (name && !name.trim())) return res.status(402).json({ error: 'Specify name' });
+  if (!name.trim() || !title.trim()) return res.status(402).json({ error: 'Specify all required fields' });
   
   const existingCategory = await Category.findOne({ name });
 
   if (existingCategory) return res.status(400).json({ error: 'Такая категория уже существует' });
 
-  const category = await Category.create({ name });
+  const category = await Category.create({ name, title });
 
   res.json({ category });
 });

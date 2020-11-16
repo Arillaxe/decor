@@ -1,6 +1,7 @@
 .cart {
   width: 1200px;
   padding-top: 20px;
+  margin-bottom: auto;
 }
 
 .cart-title {
@@ -126,9 +127,17 @@
   margin-bottom: 20px;
 }
 
+.cart-order-error {
+  font-size: 14px;
+  color: #dc3545;
+  margin-bottom: 15px;
+}
+
 .cart-order-input {
+  position: relative;
   display: flex;
   margin-bottom: 15px;
+  width: 495px;
 }
 
 .cart-order-input label {
@@ -162,4 +171,12 @@
 
 .cart-order-input.textarea label  {
   align-items: flex-start;
+}
+
+.cart-input-required {
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  font-size: 10px;
 }

@@ -2,8 +2,10 @@ const router = require("express").Router();
 const { Product } = require('../models');
 const verifyToken = require('../lib/verifyToken');
 
-router.get('/', async (req, res) => {
-  const products = await Product.find({});
+router.get('/:id?', async (req, res) => {
+  const { id } = req.params;
+
+  const products = await Product.find(id ? { _id: id } : {});
 
   res.json({ products });
 });

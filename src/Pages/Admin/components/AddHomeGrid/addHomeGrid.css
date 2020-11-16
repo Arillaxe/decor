@@ -1,0 +1,94 @@
+.addHomeGrid {
+  padding: 30px;
+}
+
+.addHomeGrid-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.addHomeGrid-form {
+  width: 300px;
+}
+
+.addHomeGrid-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.addHomeGrid-input label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.addHomeGrid-input input {
+  font-size: 18px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+}
+
+.addHomeGrid-error {
+  font-size: 14px;
+  color: #dc3545;
+}
+
+.addHomeGrid-submit {
+  background: #f78888;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.input-multiple {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.input-multiple input {
+  width: 100%;
+}
+
+.input-multiple-button {
+  background: #f78888;
+  border-radius: 3px;
+  min-width: 29px;
+  height: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.addHomeGrid-existing {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.addHomeGrid-existing-title {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.addHomeGrid-existing-homeGrid {
+  display: flex;
+  padding: 5px 0;
+}
+
+.addHomeGrid-existing-name {
+  width: 200px;
+}
+
+.addHomeGrid-existing-remove {
+  font-weight: bold;
+  color: #f78888;
+  cursor: pointer;
+}

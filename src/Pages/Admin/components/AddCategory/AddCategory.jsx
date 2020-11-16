@@ -7,6 +7,7 @@ const { host } = config;
 
 const AddCategory = () => {
   const [categories, setCategories] = useState([]);
+  const [title, setTitle] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,12 +23,12 @@ const AddCategory = () => {
   }, []);
 
   const submit = async () => {
-    if (!name.trim() || loading) return;
+    if (!name.trim() || !title.trim() || loading) return;
 
     setLoading(true);
 
     try {
-      const { data } = await axios.put(`${host}/category`, { name }, {
+      const { data } = await axios.put(`${host}/category`, { name, title }, {
         headers: {
           auth: localStorage.getItem('token'),
         },
@@ -36,6 +37,7 @@ const AddCategory = () => {
       setError('');
       setCategories([data.category, ...categories]);
       setName('');
+      setTitle('');
     } catch (e) {
       setError(e.response.data.error);
     }
@@ -63,7 +65,11 @@ const AddCategory = () => {
       <div className="addCategory-title">Добавить категорию</div>
       <div className="addCategory-form">
         <div className="addCategory-input">
-          <label htmlFor="category-name">Название категории</label>
+          <label htmlFor="category-title">Название категории</label>
+          <input id="category-title" type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
+        </div>
+        <div className="addCategory-input">
+          <label htmlFor="category-name">URL часть</label>
           <input id="category-name" type="text" onChange={(e) => setName(e.target.value)} value={name} />
         </div>
         {error && (
@@ -76,9 +82,9 @@ const AddCategory = () => {
         {!categories.length && (
           <div className="addCategory-existing-none">Категорий нет</div>
         )}
-        {categories.map(({ _id, name }) => (
+        {categories.map(({ _id, title }) => (
           <div key={_id} className="addCategory-existing-category">
-            <div className="addCategory-existing-name">{name}</div>
+            <div className="addCategory-existing-name">{title}</div>
             <div className="addCategory-existing-remove" onClick={deleteCategory(_id)}>Удалить</div>
           </div>
         ))}

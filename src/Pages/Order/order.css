@@ -1,6 +1,7 @@
 .order {
   width: 1200px;
   padding-top: 20px;
+  margin-bottom: auto;
 }
 
 .order-title {

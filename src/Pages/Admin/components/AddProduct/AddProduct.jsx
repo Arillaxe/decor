@@ -26,7 +26,7 @@ const AddProduct = () => {
 
       setProducts(productsData.products);
       setCategories(categoriesData.categories);
-      setFields((fields) => ({ ...fields, category: categoriesData.categories[0].name }));
+      setFields((fields) => ({ ...fields, category: categoriesData.categories.length ? categoriesData.categories[0].name : '' }));
     };
 
     fetchData();
@@ -48,8 +48,6 @@ const AddProduct = () => {
       'imageURL',
       'bgImage',
     ];
-
-    console.log(fields);
 
     for (let field of requiredFields) {
       if (!fields[field]) return;
@@ -93,8 +91,8 @@ const AddProduct = () => {
         <div className="addProduct-input">
           <label htmlFor="product-category">Категория</label>
           <select id="product-category" type="text" onChange={updateField('category')}>
-          {categories.map(({ _id, name }) => (
-            <option key={_id} value={name}>{name}</option>
+          {categories.map(({ _id, name, title }) => (
+            <option key={_id} value={name}>{title}</option>
           ))}
           </select>
         </div>
@@ -132,11 +130,13 @@ const AddProduct = () => {
               <div className="addProduct-existing-name">{product.title}</div>
             </div>
             <div className="addProduct-existing-details">
+              <div className="addProduct-existing-id">ID</div>
               <div className="addProduct-existing-category">Категория</div>
               <div className="addProduct-existing-dimensions">Размеры</div>
               <div className="addProduct-existing-price">Цена</div>
             </div>
             <div className="addProduct-existing-details">
+              <div className="addProduct-existing-id">{product._id}</div>
               <div className="addProduct-existing-category">{product.category}</div>
               <div className="addProduct-existing-dimensions">{product.dimensions}</div>
               <div className="addProduct-existing-price">{product.price} Р/шт</div>
