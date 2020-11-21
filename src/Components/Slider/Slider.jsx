@@ -1,18 +1,11 @@
 import ImageGallery from 'react-image-gallery';
+import config from '../../config';
 import './slider.css';
 
+const { host } = config;
+
 const Slider = () => {
-  const images = [
-    {
-      original: 'https://decoproduct.ru/uploads/slider/image/19/E-08.jpg',
-    },
-    {
-      original: 'https://decoproduct.ru/uploads/slider/image/20/M-46.jpg',
-    },
-    {
-      original: 'https://decoproduct.ru/uploads/slider/image/18/B-45_.jpg',
-    },
-  ];
+  const images = Array(5).fill(0).map((_, idx) => ({ original: `${host}/images/slides/${idx + 1}.jpg` }));
 
   return (
     <div className="slider">
@@ -22,7 +15,7 @@ const Slider = () => {
         showFullscreenButton={false}
         showPlayButton={false}
         showBullets={true}
-        autoPlay={true}
+        // autoPlay={true}
         slideInterval={5000}
         additionalClass="slider-wrapper"
       />
