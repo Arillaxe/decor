@@ -24,15 +24,29 @@ const Product = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const categories = useSelector(({ categories }) => categories);
   const category = categories.find(({ name }) => name === type) || {};
+  const [reviewAuthor, setReviewAuthor] = useState('');
+  const [reviewBody, setReviewBody] = useState('');
+  const [reviewSuccess, setReviewSuccess] = useState('');
+  const [reviewError, setReviewError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProduct = async () => {
       const { data } = await axios.get(`${host}/product/${id}`);
 
       dispatch(productsActions.addProducts(data.products));
     };
 
-    if (!products.find((product) => product._id === id)) fetchData();
+    if (!products.find((product) => product._id === id)) fetchProduct();
+
+    const fetchReviews = async () => {
+      const { data } = await axios.get(`${host}/review/${id}`);
+
+      setReviews(data.reviews);
+    };
+
+    fetchReviews();
   }, [dispatch, id, products]);
 
   const product = products.find((product) => product._id === id);
@@ -77,6 +91,35 @@ const Product = () => {
     history.push('/cart');
   };
 
+  const submitReview = async () => {
+    if (loading) return;
+
+    if (!reviewAuthor.trim() || !reviewBody.trim()) {
+      setReviewError('Пожалуйста, заполните все поля');
+      setReviewSuccess('');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await axios.put(`${host}/review/${id}`, {
+        author: reviewAuthor,
+        body: reviewBody,
+      });
+
+      setReviewError('');
+      setReviewSuccess('Ваш отзыв записан и будет добавлен после проверки модератором');
+      setReviewAuthor('');
+      setReviewBody('');
+    } catch (e) {
+      console.log(e);
+      setReviewError('Во время отправки отзыва произошел сбой. пожалуйста, попробуйте позже');
+    }
+    
+    setLoading(false);
+  };
+
   return (
     <div className="product">
       <Base>
@@ -104,7 +147,7 @@ const Product = () => {
             <div className="product-addToCart">
               <div className="product-addToCart-row">
                 <div className="product-addToCart-model">Модель: {title}</div>
-                <div className="product-addToCart-price">{price}</div>
+                <div className="product-addToCart-price">{price} &#8381;</div>
               </div>
               <div className="product-addToCart-counter">
                 <div className="product-counter-title">Количество:</div>
@@ -123,79 +166,69 @@ const Product = () => {
             </div>
           </div>
           {!!images.length && (
-            <div className="product-container images">
-              <div className="product-additionalImages">
-                <div className="product-additionalImages-title">Дополнительные фото</div>
-                <div className="product-additionalImages-images">
-                  {images.map((image, idx) => (
+            <div className="product-additionalImages">
+              <div className="product-additionalImages-title">Дополнительные фото</div>
+              <div className="product-additionalImages-images">
+                {images.map((image, idx) => (
+                  <div className="imageCropper">
                     <img key={image + idx} src={image} alt="" onClick={() => openImage(idx)} />
-                  ))}
-                  <Viewer
-                    visible={visible}
-                    onClose={() => { setVisible(false); } }
-                    images={images.map((image) => ({ src: image, alt: '' }))}
-                    activeIndex={imageIndex}
-                    drag={false}
-                    disableMouseZoom={true}
-                    noImgDetails={true}
-                    zoomable={false}
-                    scalable={false}
-                    rotatable={false}
-                    onMaskClick={() => { setVisible(false); }}
-                  />
-                </div>
+                  </div>
+                ))}
+                <Viewer
+                  visible={visible}
+                  onClose={() => { setVisible(false); } }
+                  images={images.map((image) => ({ src: image, alt: '' }))}
+                  activeIndex={imageIndex}
+                  drag={false}
+                  disableMouseZoom={true}
+                  noImgDetails={true}
+                  zoomable={false}
+                  scalable={false}
+                  rotatable={false}
+                  onMaskClick={() => { setVisible(false); }}
+                />
               </div>
             </div>
           )}
           <div className="product-reviews-container">
             <div className="product-reviews-title">Отзывы</div>
             <div className="product-reviews">
-              <div className="product-review">
-                <div className="product-review-avatar">С</div>
-                <div className="product-review-body">
-                  <div className="product-review-text">
-                  Красивейший барельеф получился! Очень удобный сайт, легко пользоваться. Конечно сложно затеряться, среди огромного каталога, но грамотные менеджеры помогут! Звоните им, не стесняйтесь!
+              {!reviews.length && (
+                <div className="product-reviews-none">Отзывов нет</div>
+              )}
+              {reviews.map((review) => {
+                const date = new Date(review.createdAt);
+                const dd = String(date.getDate()).padStart(2, '0');
+                const mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+                const yyyy = date.getFullYear();
+
+                const dateFormatted = `${dd}.${mm}.${yyyy}`;
+
+                return (
+                  <div key={review._id} className="product-review">
+                    <div className="product-review-avatar">{review.author[0]}</div>
+                    <div className="product-review-body">
+                      <div className="product-review-text">{review.body}</div>
+                      <div className="product-review-info">
+                        <span className="product-review-author">{review.author} - </span>
+                        <span className="product-review-date">{dateFormatted}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="product-review-info">
-                    <span className="product-review-author">Стася - </span>
-                    <span className="product-review-date">12.10.2019</span>
-                  </div>
-                </div>
-              </div>
-              <div className="product-review">
-                <div className="product-review-avatar">С</div>
-                <div className="product-review-body">
-                  <div className="product-review-text">
-                  Красивейший барельеф получился! Очень удобный сайт, легко пользоваться. Конечно сложно затеряться, среди огромного каталога, но грамотные менеджеры помогут! Звоните им, не стесняйтесь!
-                  </div>
-                  <div className="product-review-info">
-                    <span className="product-review-author">Стася - </span>
-                    <span className="product-review-date">12.10.2019</span>
-                  </div>
-                </div>
-              </div>
-              <div className="product-review">
-                <div className="product-review-avatar">С</div>
-                <div className="product-review-body">
-                  <div className="product-review-text">
-                  Красивейший барельеф получился! Очень удобный сайт, легко пользоваться. Конечно сложно затеряться, среди огромного каталога, но грамотные менеджеры помогут! Звоните им, не стесняйтесь!
-                  </div>
-                  <div className="product-review-info">
-                    <span className="product-review-author">Стася - </span>
-                    <span className="product-review-date">12.10.2019</span>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
             <div className="product-reviews-form">
               <div className="product-form-title">Добавить свой отзыв</div>
+                <div className="product-form-success">{reviewSuccess}</div>
+                <div className="product-form-error">{reviewError}</div>
               <div className="product-form-name">
-                  <input type="text" placeholder="Ваше имя" />
+                  <input type="text" placeholder="Ваше имя" value={reviewAuthor} onChange={(e) => setReviewAuthor(e.target.value)} />
               </div>
               <div className="product-form-review">
-                <textarea name="review" id="review" rows="5" placeholder="Ваш отзыв"></textarea>
+                <textarea name="review" id="review" rows="5" placeholder="Ваш отзыв" value={reviewBody} onChange={(e) => setReviewBody(e.target.value)}></textarea>
               </div>
-              <div className="product-form-button">Добавить отзыв</div>
+              <div className="product-form-button" onClick={submitReview}>Добавить отзыв</div>
             </div>
           </div>
         </Fragment>

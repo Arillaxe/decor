@@ -114,3 +114,47 @@ footer a {
   height: 40px;
   margin-left: 5px;
 }
+
+@media screen and (max-width: 1200px) {
+  .footer-container {
+    width: 100%;
+  }
+
+  .footer-copyrights {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-copyrights-text {
+    width: 100%;
+  }
+
+  .footer-copyrights-copy {
+    position: static;
+    order: 1;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-contacts {
+    text-align: center;
+    order: 1;
+  }
+
+  .footer-menu {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .footer-menu-column {
+    margin: 0;
+    text-align: center;
+  }
+}

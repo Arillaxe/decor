@@ -18,9 +18,6 @@ const Footer = () => {
         <div className="footer-menu">
           <div className="footer-menu-column">
             <div className="footer-column-title">О компании</div>
-            <Link to="/about">
-              <div className="footer-column-item">О компании</div>
-            </Link>
             <Link to="/contacts">
               <div className="footer-column-item">Контакты</div>
             </Link>
@@ -31,8 +28,8 @@ const Footer = () => {
           <div className="footer-menu-column">
             <div className="footer-column-title">Каталог</div>
             {categories.map(({ _id, title, name }) => (
-              <Link to={`/product/${name}`}>
-                <div key={_id} className="footer-column-item">{title}</div>
+              <Link key={_id} to={`/product/${name}`}>
+                <div className="footer-column-item">{title}</div>
                </Link>
             ))}
           </div>

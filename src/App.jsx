@@ -12,10 +12,12 @@ import {
   faTimes,
   faAsterisk,
   faTrash,
+  faBars,
+  faChevronDown,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTop } from './Components';
 import {
-  About,
   Admin,
   Cart,
   Category,
@@ -29,7 +31,17 @@ import store from './lib/store';
 import products from './data';
 import './App.css';
 
-library.add(faShoppingCart, faPlus, faMinus, faTimes, faAsterisk, faTrash);
+library.add(
+  faShoppingCart,
+  faPlus,
+  faMinus,
+  faTimes,
+  faAsterisk,
+  faTrash,
+  faBars,
+  faChevronDown,
+  faCheck,
+);
 
 const App = () => {
   return (
@@ -52,9 +64,6 @@ const App = () => {
             </Route>
             <Route path="/order">
               <Order />
-            </Route>
-            <Route path="/about">
-              <About />
             </Route>
             <Route path="/contacts">
               <Contacts />

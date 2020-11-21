@@ -1,0 +1,68 @@
+.adminGallery {
+  padding: 30px;
+}
+
+.adminGallery-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.adminGallery .uploadImage {
+  width: 400px;
+}
+
+.adminGallery-button, .adminGallery-button-delete {
+  background: #f78888;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 3px;
+  width: 400px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.adminGallery-button-delete {
+  margin-bottom: 30px;
+}
+
+.adminGallery-existing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.adminGallery .imageCropper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.adminGallery .imageCropper img {
+  height: 100%;
+}
+
+.adminGallery .imageCropper::after {
+  display: none;
+  content: 'Удалить';
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.adminGallery .imageCropper:hover::after {
+  display: flex;
+}

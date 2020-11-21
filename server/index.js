@@ -1,6 +1,8 @@
 process.env.NODE_CONFIG_DIR = `${__dirname}/../config/`;
 
+const path = require('path');
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -27,9 +29,11 @@ mongoose.connect(`mongodb://${username}:${password}@${host}?retryWrites=false`,
 
 const port = process.env.PORT || configPort || 3000;
 
-const app = express()
+express()
   .use(cors())
+  .use(fileUpload())
   .use(morgan('dev'))
   .use(express.json())
   .use('/', router)
+  .use('/images', express.static(path.join(__dirname, 'public', 'images')))
   .listen(port, () => console.log(`Server running at port ${port}`));

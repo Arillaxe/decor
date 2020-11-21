@@ -1,15 +1,29 @@
 .slider {
-  margin-top: 30px;
+  border-bottom: 3px solid #f78888;
 }
 
 .slider-wrapper {
-  padding: 15px;
-  width: 1170px;
-  background: #2c3033;
-  border-radius: 4px;
-  box-sizing: content-box;
+  width: 1200px;
 }
 
 .slider-wrapper img {
-  width: 1170px;
+  width: 1200px;
+}
+
+.image-gallery-icon:hover {
+  color:  #f78888 !important;
+}
+
+.image-gallery-bullets .image-gallery-bullet:hover {
+  background: #f78888 !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .slider-wrapper {
+    width: 100%;
+  }
+
+  .slider-wrapper img {
+    width: 100%;
+  }
 }

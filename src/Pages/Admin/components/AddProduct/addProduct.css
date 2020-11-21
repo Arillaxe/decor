@@ -2,6 +2,11 @@
   padding: 30px;
 }
 
+.addProduct a {
+  text-decoration: initial;
+  color: inherit;
+}
+
 .addProduct-title {
   font-weight: bold;
   font-size: 32px;
@@ -96,4 +101,25 @@
   font-weight: bold;
   color: #f78888;
   cursor: pointer;
+}
+
+.addProduct .input-multiple {
+  align-items: center;
+}
+
+.addProduct .input-multiple-button {
+  height: 44px;
+  width: 44px;
+}
+
+.input-multiple .uploadImage-button {
+  margin-top: 0;
+}
+
+.input-multiple .uploadImage {
+  width: 100%;
+}
+
+.addProduct .input-multiple label {
+  width: 100%;
 }

@@ -1,10 +1,51 @@
 .gallery {
   width: 1200px;
   margin-bottom: auto;
+  background: #2c3033;
+  padding: 0 30px 30px;
+  box-sizing: border-box;
 }
 
 .gallery-title {
   margin-top: 20px;
   font-size: 36px;
   font-weight: bold;
+}
+
+.gallery-existing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.gallery .imageCropper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery .imageCropper img {
+  height: 100%;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .gallery {
+    width: 100%;
+  }
+
+  .gallery-existing {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gallery .imageCropper {
+    width: 100%;
+    height: calc(100vw -60px);
+  }
 }

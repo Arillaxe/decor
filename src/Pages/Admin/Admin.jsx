@@ -3,8 +3,10 @@ import {
   AddCategory,
   AddHomeGrid,
   AddProduct,
+  Gallery,
   Login,
   Orders,
+  Reviews,
 } from './components';
 import './admin.css';
 
@@ -31,12 +33,16 @@ const Admin = () => {
           <div className={`admin-tab ${tab === 'addProduct' && 'active'}`} onClick={tabSelector('addProduct')}>Товары</div>
           <div className={`admin-tab ${tab === 'addCategory' && 'active'}`} onClick={tabSelector('addCategory')}>Категории</div>
           <div className={`admin-tab ${tab === 'addHomeGrid' && 'active'}`} onClick={tabSelector('addHomeGrid')}>Лидеры продаж</div>
+          <div className={`admin-tab ${tab === 'reviews' && 'active'}`} onClick={tabSelector('reviews')}>Отзывы</div>
+          <div className={`admin-tab ${tab === 'gallery' && 'active'}`} onClick={tabSelector('gallery')}>Галерея</div>
           <div className="admin-tab logout" onClick={logOut}>Выход</div>
         </div>
         {tab === 'orders' && (<Orders />)}
         {tab === 'addProduct' && (<AddProduct />)}
         {tab === 'addCategory' && (<AddCategory />)}
         {tab === 'addHomeGrid' && (<AddHomeGrid />)}
+        {tab === 'reviews' && (<Reviews />)}
+        {tab === 'gallery' && (<Gallery />)}
       </div>
     )}
     </div>

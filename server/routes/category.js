@@ -1,5 +1,9 @@
 const router = require("express").Router();
-const { Category } = require('../models');
+const {
+  Category,
+  Product,
+  Review,
+} = require('../models');
 const verifyToken = require('../lib/verifyToken');
 
 router.get('/', async (req, res) => {
@@ -31,6 +35,9 @@ router.delete('/:id', verifyToken, async (req, res) => {
 
   if (!category) return res.status(404).json({ error: 'Category not found' });
 
+  const products = await Product.find({ category: category.name });
+  await Review.deleteMany({ productId: { $in: products.map(({ _id }) => _id) } });
+  await Product.deleteMany({ category: category.name });
   await category.deleteOne();
 
   res.sendStatus(200);

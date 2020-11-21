@@ -1,10 +1,35 @@
 .categoryGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 30px;
   margin-bottom: 50px;
 }
 
-.categoryGrid .gridItem {
-  width: 275px;
+.categoryGrid .gridItem, .categoryGrid .gridItem .imageCropper {
+  width: 262.5px;
+}
+
+.categoryGrid .gridItem .imageCropper {
+  height: 262.5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .categoryGrid .gridItem {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .categoryGrid .gridItem .imageCropper {
+    width: 100%;
+    height: calc((100vw - 30px) / 2);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .categoryGrid .gridItem {
+    width: 100%;
+  }
+
+  .categoryGrid .gridItem .imageCropper {
+    height: calc(100vw - 60px);
+  }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
 import './orders.css';
@@ -63,13 +64,13 @@ const Orders = () => {
               <div className="admin-order-products">
                 {order.products.map(({ amount, product }) => (
                   <div key={product._id} className="admin-order-product">
-                    <div className="admin-product-title"><span className="bold">{product.title}</span> x {amount}</div>
-                    <div className="admin-product-price">{(product.price * amount).toFixed(2)}</div>
+                    <div className="admin-product-title"><span className="bold"><Link target="_blank" to={`/product/${product.category}/${product._id}`}>{product.title}</Link></span> x {amount}</div>
+                    <div className="admin-product-price">{(product.price * amount).toFixed(2)} &#8381;</div>
                   </div>
                 ))}
                 <div className="admin-order-product">
                     <div className="admin-product-title">Итого</div>
-                    <div className="admin-product-price">{(order.products.reduce((total, { amount, product }) => total + amount * product.price, 0)).toFixed(2)}</div>
+                    <div className="admin-product-price">{(order.products.reduce((total, { amount, product }) => total + amount * product.price, 0)).toFixed(2)} &#8381;</div>
                 </div>
               </div>
               <div className="admin-order-comment">{order.comment}</div>

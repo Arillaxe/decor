@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Base } from '..';
 import { Breadcrumbs} from '../../Components';
 import './order.css';
@@ -21,6 +22,9 @@ const Order = () => {
           }
         ]} />
         <div className="order-details">В ближайшее время наш сотрудник свяжется с вами для потверждения вашего заказа</div>
+        <Link to="/">
+          <div className="order-backButton">На главную</div>
+        </Link>
       </div>
     </Base>
   );

@@ -1,10 +1,49 @@
 .order {
   width: 1200px;
-  padding-top: 20px;
+  padding: 30px;
+  height: 100%;
   margin-bottom: auto;
+  box-sizing: border-box;
+  background-color: #2c3033;
 }
 
 .order-title {
   font-size: 36px;
   font-weight: bold;
+}
+
+.order-backButton {
+  background: #f78888;
+  color: #131415;
+  font-size: 18px;
+  padding: 20px 0;
+  width: 250px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 30px 0 0 auto;
+}
+
+.order a {
+  text-decoration: initial;
+}
+
+@media screen and (max-width: 1200px) {
+  .order {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .order {
+    min-height: 400px;
+  }
+
+  .order-title {
+    font-size: 30px;
+  }
+
+  .order-backButton {
+    margin: 30px auto 0;
+  }
 }

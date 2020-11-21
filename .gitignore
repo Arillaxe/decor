@@ -24,3 +24,6 @@ yarn-error.log*
 
 /config
 /server/node_modules
+
+/server/public/images/*
+!/server/public/images/.gitkeep

@@ -14,11 +14,13 @@ const GridItem = (props) => {
   return (
     <div className="gridItem">
       <Link to={`/product/${category}/${id}`}>
-        <img src={imageURL} alt=""/>
+        <div className="imageCropper">
+          <img src={imageURL} alt=""/>
+        </div>
       </Link>
       <div className="gridItem-info">
         <div className="gridItem-info-dimensions">{dimensions}</div>
-        <div className="gridItem-info-price">{price}</div>
+        <div className="gridItem-info-price">{price} &#8381;</div>
       </div>
       <Link to={`/product/${category}/${id}`}>
         <div className="gridItem-title">{title}</div>

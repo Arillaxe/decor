@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
+import { UploadImage } from '..';
 import './addProduct.css';
 
 const { host } = config;
@@ -12,12 +15,15 @@ const AddProduct = () => {
     description: '',
     dimensions: '',
     price: '',
-    imageURL: '',
+    image: '',
     bgImage: '',
   });
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [additionalImagesFields, setAdditionalImagesFields] = useState([{ id: 1, value: {}, ref: useRef() }]);
+  const imageRef = useRef();
+  const bgImageRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,9 +38,28 @@ const AddProduct = () => {
     fetchData();
   }, []);
 
+  const addIdField = () => {
+    setAdditionalImagesFields([...additionalImagesFields, { id: additionalImagesFields[additionalImagesFields.length - 1].id + 1, value: {} }]);
+  };
+
+  const removeIdField = (id) => () => {
+    setAdditionalImagesFields([...additionalImagesFields.filter(({ id: fieldId }) => fieldId !== id)]);
+  };
+
   const updateField = (field) => (e) => {
     setFields({ ...fields, [field]: e.target.value });
   };
+
+  const updateFieldByValue = (field) => (value) => {
+    setFields({ ...fields, [field]: value });
+  }
+
+  const updateImagesField = (id) => (value) => {
+    const otherFields = additionalImagesFields.filter(({ id: fieldId }) => fieldId !== id);
+    const { ref } = additionalImagesFields.find(({ id: fieldId }) => fieldId === id);
+
+    setAdditionalImagesFields([...otherFields, { id, value, ref }].sort((a, b) => a.id - b.id));
+  } 
 
   const submit = async () => {
     if (loading) return;
@@ -45,24 +70,53 @@ const AddProduct = () => {
       'description',
       'dimensions',
       'price',
-      'imageURL',
+      'image',
       'bgImage',
     ];
 
+    const formData = new FormData();
+
     for (let field of requiredFields) {
       if (!fields[field]) return;
+
+      formData.append(field, fields[field]);
+    }
+
+    for (let additionalImage of additionalImagesFields) {
+      if (!additionalImage.value.name) continue;
+
+      formData.append(`images${additionalImage.id}`, additionalImage.value);
     }
 
     setLoading(true);
 
-    const { data } = await axios.put(`${host}/product`, fields, {
-      headers: {
-        auth: localStorage.getItem('token'),
-      },
-    });
-
-    setProducts([data.product, ...products]);
+    try {
+      const { data } = await axios.put(`${host}/product`, formData, {
+        headers: {
+          auth: localStorage.getItem('token'),
+        },
+      });
+  
+      setProducts([data.product, ...products]);
+    } catch (e) {
+      console.log(e);
+    }
+    
     setLoading(false);
+    setFields({
+      title: '',
+      category: categories.length ? categories[0].name : '',
+      description: '',
+      dimensions: '',
+      price: '',
+      image: '',
+      bgImage: '',
+    });
+    setAdditionalImagesFields([additionalImagesFields[0]]);
+    additionalImagesFields[0].ref.current.clear();
+
+    imageRef.current.clear();
+    bgImageRef.current.clear();
   };
 
   const deleteProduct = (id) => async () => {
@@ -86,7 +140,7 @@ const AddProduct = () => {
       <div className="addProduct-form">
         <div className="addProduct-input">
           <label htmlFor="product-title">Название товара</label>
-          <input id="product-title" type="text" onChange={updateField('title')}/>
+          <input id="product-title" type="text" onChange={updateField('title')} value={fields.title} />
         </div>
         <div className="addProduct-input">
           <label htmlFor="product-category">Категория</label>
@@ -98,23 +152,38 @@ const AddProduct = () => {
         </div>
         <div className="addProduct-input">
           <label htmlFor="product-dimensions">Размеры</label>
-          <input id="product-dimensions" type="text" onChange={updateField('dimensions')}/>
+          <input id="product-dimensions" type="text" onChange={updateField('dimensions')} value={fields.dimensions} />
         </div>
         <div className="addProduct-input">
           <label htmlFor="product-price">Цена</label>
-          <input id="product-price" type="text" onChange={updateField('price')}/>
+          <input id="product-price" type="text" onChange={updateField('price')} value={fields.price} />
         </div>
         <div className="addProduct-input">
-          <label htmlFor="product-imageURL">URL картинки</label>
-          <input id="product-imageURL" type="text" onChange={updateField('imageURL')}/>
+            <UploadImage id="product-image" label="Основная картинка" onChange={updateFieldByValue('image')} ref={imageRef} />
         </div>
         <div className="addProduct-input">
-          <label htmlFor="product-bgImage">URL картинки заднего фона</label>
-          <input id="product-bgImage" type="text" onChange={updateField('bgImage')}/>
+            <UploadImage id="product-bgImage" label="Картинка заднего фона" onChange={updateFieldByValue('bgImage')} ref={bgImageRef} />
+        </div>
+        <div className="addProduct-input">
+          <label>Дополнительные изображения</label>
+          {additionalImagesFields.map(({ id, ref }, idx) => (
+            <div key={id} className="input-multiple">
+              <UploadImage id={`product-images-${id}`} onChange={updateImagesField(id)} ref={ref} />
+              {idx === additionalImagesFields.length - 1 ? (
+                <div className="input-multiple-button" onClick={addIdField}>
+                  <FontAwesomeIcon icon="plus" />
+                </div>
+              ) : (
+                <div className="input-multiple-button" onClick={removeIdField(id)}>
+                  <FontAwesomeIcon icon="times" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
         <div className="addProduct-input">
           <label htmlFor="product-description">Описание</label>
-          <textarea id="product-description" onChange={updateField('description')}></textarea>
+          <textarea id="product-description" onChange={updateField('description')} value={fields.description}></textarea>
         </div>
         <div className="addProduct-submit" onClick={submit}>Добавить</div>
       </div>
@@ -126,8 +195,10 @@ const AddProduct = () => {
         {products.map((product) => (
           <div key={product._id} className="addProduct-existing-product">
             <div className="addProduct-existing-info">
-              <img src={product.imageURL} alt=""/>
-              <div className="addProduct-existing-name">{product.title}</div>
+              <Link target="_blank" to={`/product/${product.category}/${product._id}`}>
+                <img src={product.imageURL} alt=""/>
+                <div className="addProduct-existing-name">{product.title}</div>
+              </Link>
             </div>
             <div className="addProduct-existing-details">
               <div className="addProduct-existing-id">ID</div>

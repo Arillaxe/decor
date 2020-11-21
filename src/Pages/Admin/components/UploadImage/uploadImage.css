@@ -1,0 +1,25 @@
+.uploadImage input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.uploadImage label {
+  font-size: 18px;
+}
+
+.uploadImage-button {
+	background: #f78888;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+	border-radius: 3px;
+	text-overflow: ellipsis;
+}

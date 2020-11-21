@@ -1,8 +1,15 @@
 .gridItem {
   position: relative;
-  width: 385px;
+  width: 360px;
   display: flex;
   flex-direction: column;
+  background: #25282b;
+}
+
+.gridItem .imageCropper {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .gridItem::after {
@@ -28,10 +35,8 @@
 }
 
 .gridItem img {
-  width: 100%;
-  padding: 15px;
+  height: 100%;
   background: #2c3033;
-  border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -41,14 +46,17 @@
   display: flex;
   justify-content: space-between;
   color: #f78888;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
+  padding: 0 15px;
 }
 
 .gridItem-title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  padding: 0 15px 15px;
+
 }
 
 .gridItem-title:hover {
@@ -59,3 +67,20 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+@media screen and (max-width: 1200px) {
+  .gridItem {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .gridItem .imageCropper {
+    width: calc((100% - 30px) / 2);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gridItem {
+    width: 100%;
+  }
+}
+

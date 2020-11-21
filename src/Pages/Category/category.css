@@ -1,6 +1,9 @@
 .category {
   width: 1200px;
   margin-bottom: auto;
+  background: #2c3033;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 .category-title {
@@ -8,3 +11,16 @@
   font-size: 36px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 1200px) {
+  .category {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gridItem {
+    width: 100%;
+  }
+}
+

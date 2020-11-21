@@ -1,6 +1,6 @@
 import { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import config from '../../config';
@@ -95,19 +95,26 @@ const Cart = () => {
         ]} />
         <div className="cart-items">
         {!items.length && (
-          <div className="cart-empty">В вашей корзине ничего нет</div>
+          <Fragment>
+            <div className="cart-empty">В вашей корзине ничего нет</div>
+            <Link to="/">
+              <div className="cart-backButton">На главную</div>
+            </Link>
+          </Fragment>
         )}
         {aggregatedProducts.map(({ amount, product }) => (
           <div className="cart-item" key={product._id}>
             <div className="cart-item-info">
-              <img src={product.imageURL} alt=""/>
-              <div className="cart-item-title">Модель {product.title}</div>
+              <Link to={`/product/${product.category}/${product._id}`}>
+                <img src={product.imageURL} alt=""/>
+                <div className="cart-item-title">Модель {product.title}</div>
+              </Link>
             </div>
             <div className="cart-item-prices">
               <div className="cart-prices-heading">Количество</div>
               <div className="cart-prices-count">{amount}</div>
-              <div className="cart-prices-price">{product.price} Р/шт</div>
-              <div className="cart-prices-cost">{(product.price * amount).toFixed(2)} Р</div>
+              <div className="cart-prices-price">{product.price} &#8381;</div>
+              <div className="cart-prices-cost">{(product.price * amount).toFixed(2)} &#8381;</div>
               <div className="cart-item-remove" onClick={removeFromCart(product._id)}>Удалить</div>
             </div>
           </div>
@@ -116,7 +123,7 @@ const Cart = () => {
         {!!items.length && (
           <Fragment>
             <div className="cart-totals">
-              <div className="cart-total">Итого: <span className="cart-total-highlighted">{totalPrice} Р</span></div>
+              <div className="cart-total">Итого: <span className="cart-total-highlighted">{totalPrice} &#8381;</span></div>
             </div>
             <div className="cart-order">
               <div className="cart-order-title">Оформление заказа</div>

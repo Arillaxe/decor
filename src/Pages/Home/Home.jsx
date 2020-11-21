@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import config from '../../config';
 import { Base } from '..';
-import { Expandable, HomeGrid, Slider } from '../../Components';
+import { HomeGrid, Slider } from '../../Components';
 import { homeGridsSlice, productsSlice } from '../../slices';
 import './home.css';
 
@@ -35,11 +35,12 @@ const Home = () => {
   
   return (
     <Base>
-      <Slider />
-      {homeGrids.map(({ _id, title, products: homeGridProducts }) => (
-        <HomeGrid key={_id} items={products.filter(({ _id }) => homeGridProducts.includes(_id))} type="panel" title={title} />
-      ))}
-      <Expandable />
+      <div className="home">
+        <Slider />
+        {homeGrids.map(({ _id, title, products: homeGridProducts }) => (
+          <HomeGrid key={_id} items={products.filter(({ _id }) => homeGridProducts.includes(_id))} type="panel" title={title} />
+        ))}
+      </div>
     </Base>
   );
 };

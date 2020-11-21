@@ -1,0 +1,51 @@
+.adminReviews {
+  padding: 30px;
+}
+
+.adminReviews a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.adminReviews-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.adminReviews-review {
+  display: flex;
+}
+
+.adminReviews-review > div {
+  flex: 1;
+}
+
+.adminReviews-review-product {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.adminReviews-controls {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.adminReviews-review-approve, .adminReviews-review-delete {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.adminReviews-review-approve {
+  background-color: #28a745;
+}
+
+.adminReviews-review-delete {
+  background-color: #dc3545;
+  margin-left: 10px;
+}
