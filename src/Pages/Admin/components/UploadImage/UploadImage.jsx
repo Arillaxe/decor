@@ -33,7 +33,7 @@ const UploadImage = (props, ref) => {
     }
   };
 
-  const name = file && file.length ? Array.from(file).map((f) => f.name).join(',') : file.name;
+  const name = file && file.length ? Array.from(file).map((f) => f.name).join(',') : (file ? file.name : '');
   const fileName = name ? (name.length > 20 ? `${name.slice(0, 20)}...` : name) : 'Выбрать';
 
   return (
