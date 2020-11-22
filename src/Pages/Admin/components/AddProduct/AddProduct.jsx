@@ -144,7 +144,7 @@ const AddProduct = () => {
         </div>
         <div className="addProduct-input">
           <label htmlFor="product-category">Категория</label>
-          <select id="product-category" type="text" onChange={updateField('category')}>
+          <select id="product-category" type="text" onChange={updateField('category')} value={fields.category}>
           {categories.map(({ _id, name, title }) => (
             <option key={_id} value={name}>{title}</option>
           ))}
