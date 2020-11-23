@@ -9,7 +9,7 @@ const {
 } = require('../models');
 const verifyToken = require('../lib/verifyToken');
 
-const { host, port } = config;
+const { host, proxyPort } = config;
 
 router.get('/:id?', async (req, res) => {
   const { id } = req.params;
@@ -64,7 +64,7 @@ router.put('/', verifyToken, async (req, res) => {
     return res.status(502).json({ error: String(e) });
   }
 
-  const publicImages = `${host}:${port}/images`;
+  const publicImages = `${host}:${proxyPort}/images`;
 
   const images = Object.keys(fileNames)
     .filter((fieldName) => fieldName !== 'image' && fieldName !== 'bgImage')

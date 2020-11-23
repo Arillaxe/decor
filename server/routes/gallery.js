@@ -5,7 +5,7 @@ const router = require("express").Router();
 const { Gallery } = require('../models');
 const verifyToken = require('../lib/verifyToken');
 
-const { host, port } = config;
+const { host, proxyPort } = config;
 
 router.get('/', async (req, res) => {
   const galleries = await Gallery.find({}).sort({ createdAt: -1 });
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.put('/', verifyToken, async (req, res) => {
   if (!Object.keys(req.files).length) return res.status(402).json({ error: 'Specify all required fields' });
 
-  const publicImages = `${host}:${port}/images`;
+  const publicImages = `${host}:${proxyPort}/images`;
 
   try {
     for (let imageField in req.files) {
