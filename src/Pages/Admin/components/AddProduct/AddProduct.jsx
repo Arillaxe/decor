@@ -63,7 +63,7 @@ const AddProduct = () => {
 
   const submit = async () => {
     if (loading) return;
-    
+
     const requiredFields = [
       'title',
       'category',
@@ -112,7 +112,7 @@ const AddProduct = () => {
       image: '',
       bgImage: '',
     });
-    setAdditionalImagesFields([additionalImagesFields[0]]);
+    setAdditionalImagesFields([{ ...additionalImagesFields[0], value: '' }]);
     additionalImagesFields[0].ref.current.clear();
 
     imageRef.current.clear();

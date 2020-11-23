@@ -67,7 +67,7 @@ router.put('/', verifyToken, async (req, res) => {
   const publicImages = `${host}:${port}/images`;
 
   const images = Object.keys(fileNames)
-    .filter((fieldName) => fieldName !== 'image' || fieldName !== 'bgImage')
+    .filter((fieldName) => fieldName !== 'image' && fieldName !== 'bgImage')
     .map((fieldName) => `${publicImages}/${fileNames[fieldName]}`);
 
   const product = await Product.create({
