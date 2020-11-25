@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../../../config';
 import { Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './addHomeGrid.css';
 
 const { host } = config;
@@ -85,6 +86,7 @@ const AddHomeGrid = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="addHomeGrid">
         <div className="addHomeGrid-title">Добавить лидера продаж</div>
         <div className="addHomeGrid-form">

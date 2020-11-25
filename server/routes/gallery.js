@@ -1,5 +1,6 @@
 const path = require('path');
 const md5 = require('md5');
+const jimp = require('jimp');
 const config = require('config');
 const router = require("express").Router();
 const { Gallery } = require('../models');
@@ -25,6 +26,10 @@ router.put('/', verifyToken, async (req, res) => {
       const fileName = `${md5(image.name + Date.now())}.${ext}`;
   
       await image.mv(path.join(__dirname, `../public/images/${fileName}`));
+
+      const loadedImage = await jimp.read(path.join(__dirname, `../public/images/${fileName}`));
+      const font = await jimp.loadFont(jimp.FONT_SANS_16_WHITE);
+      await loadedImage.print(font, 10, loadedImage.getHeight() - 30, '3ddecorcrimea.com').write(path.join(__dirname, `../public/images/${fileName}`));
   
       await Gallery.create({ image: `${publicImages}/${fileName}` });
     }

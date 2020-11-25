@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
 import { Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './orders.css';
 
 const { host } = config;
@@ -44,6 +45,7 @@ const Orders = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="admin-orders">
         <div className="admin-orders-title">Заказы</div>
         {!orders.length ? (

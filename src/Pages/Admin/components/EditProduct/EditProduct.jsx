@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import config from '../../../../config';
 import { UploadImage, Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './editProduct.css';
 
 const { host } = config;
@@ -126,6 +127,7 @@ const EditProduct = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="editProduct">
         <div className="editProduct-column">
           <div className="editProduct-title">Редактирование</div>

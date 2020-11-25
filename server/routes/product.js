@@ -1,5 +1,6 @@
 const path = require('path');
 const md5 = require('md5');
+const jimp = require('jimp');
 const config = require('config');
 const router = require("express").Router();
 const {
@@ -59,6 +60,10 @@ router.put('/', verifyToken, async (req, res) => {
       fileNames[fileField] = `${md5(file.name + Date.now())}.${ext}`;
 
       await file.mv(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
+
+      const loadedImage = await jimp.read(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
+      const font = await jimp.loadFont(jimp.FONT_SANS_16_WHITE);
+      await loadedImage.print(font, 10, loadedImage.getHeight() - 30, '3ddecorcrimea.com').write(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
     }
   } catch (e) {
     return res.status(502).json({ error: String(e) });
@@ -113,6 +118,10 @@ router.post('/:id', verifyToken, async (req, res) => {
       fileNames[fileField] = `${md5(file.name + Date.now())}.${ext}`;
 
       await file.mv(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
+
+      const loadedImage = await jimp.read(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
+      const font = await jimp.loadFont(jimp.FONT_SANS_16_WHITE);
+      await loadedImage.print(font, 10, loadedImage.getHeight() - 30, '3ddecorcrimea.com').write(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
     }
   } catch (e) {
     return res.status(502).json({ error: String(e) });

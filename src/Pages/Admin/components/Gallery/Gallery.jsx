@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, Fragment } from 'react';
 import axios from 'axios';
 import config from '../../../../config';
 import { UploadImage, Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './gallery.css';
 
 const { host } = config;
@@ -90,6 +91,7 @@ const Gallery = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="adminGallery">
         <div className="adminGallery-title">Добавить изображение</div>
         <UploadImage multiple ref={imageRef} id="gallery-upload" label="Выберите изображение" onChange={(value) => setFiles(value)} />

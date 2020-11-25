@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
 import { UploadImage, Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './addProduct.css';
 
 const { host } = config;
@@ -137,6 +138,7 @@ const AddProduct = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="addProduct">
         <div className="addProduct-title">Добавить товар</div>
         <div className="addProduct-form">

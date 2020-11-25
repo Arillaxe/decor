@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
+import { Loader } from '../../../../Components';
 import './login.css';
 
 const { host } = config;
@@ -49,6 +50,7 @@ const Login = () => {
 
   return (
     <div className="login">
+      {loading && <Loader />}
       <div className="login-form">
         <div className="login-title">Войти</div>
         <div className="login-input">

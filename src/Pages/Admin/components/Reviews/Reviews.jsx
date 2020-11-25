@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import config from '../../../../config';
 import { Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './reviews.css';
 
 const { host } = config;
@@ -69,6 +70,7 @@ const Reviews = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="adminReviews">
         <div className="adminReviews-title">Отзывы</div>
         {!reviews.length && (

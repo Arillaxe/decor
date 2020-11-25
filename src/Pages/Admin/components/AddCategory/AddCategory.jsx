@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import config from '../../../../config';
 import { Navigation } from '..';
+import { Loader } from '../../../../Components';
 import './addCategory.css';
 
 const { host } = config;
@@ -64,6 +65,7 @@ const AddCategory = () => {
   return (
     <Fragment>
       <Navigation />
+      {loading && <Loader />}
       <div className="addCategory">
         <div className="addCategory-title">Добавить категорию</div>
         <div className="addCategory-form">
