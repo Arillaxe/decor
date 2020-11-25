@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import config from '../../../../config';
+import { Navigation } from '..';
 import './addCategory.css';
 
 const { host } = config;
@@ -61,35 +62,38 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="addCategory">
-      <div className="addCategory-title">Добавить категорию</div>
-      <div className="addCategory-form">
-        <div className="addCategory-input">
-          <label htmlFor="category-title">Название категории</label>
-          <input id="category-title" type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
-        </div>
-        <div className="addCategory-input">
-          <label htmlFor="category-name">URL часть</label>
-          <input id="category-name" type="text" onChange={(e) => setName(e.target.value)} value={name} />
-        </div>
-        {error && (
-          <div className="addCategory-error">{'' + error}</div>
-        )}
-        <div className="addCategory-submit" onClick={submit}>Добавить</div>
-      </div>
-      <div className="addCategory-existing">
-        <div className="addCategory-existing-title">Существующие категории</div>
-        {!categories.length && (
-          <div className="addCategory-existing-none">Категорий нет</div>
-        )}
-        {categories.map(({ _id, title }) => (
-          <div key={_id} className="addCategory-existing-category">
-            <div className="addCategory-existing-name">{title}</div>
-            <div className="addCategory-existing-remove" onClick={deleteCategory(_id)}>Удалить</div>
+    <Fragment>
+      <Navigation />
+      <div className="addCategory">
+        <div className="addCategory-title">Добавить категорию</div>
+        <div className="addCategory-form">
+          <div className="addCategory-input">
+            <label htmlFor="category-title">Название категории</label>
+            <input id="category-title" type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
           </div>
-        ))}
+          <div className="addCategory-input">
+            <label htmlFor="category-name">URL часть</label>
+            <input id="category-name" type="text" onChange={(e) => setName(e.target.value)} value={name} />
+          </div>
+          {error && (
+            <div className="addCategory-error">{'' + error}</div>
+          )}
+          <div className="addCategory-submit" onClick={submit}>Добавить</div>
+        </div>
+        <div className="addCategory-existing">
+          <div className="addCategory-existing-title">Существующие категории</div>
+          {!categories.length && (
+            <div className="addCategory-existing-none">Категорий нет</div>
+          )}
+          {categories.map(({ _id, title }) => (
+            <div key={_id} className="addCategory-existing-category">
+              <div className="addCategory-existing-name">{title}</div>
+              <div className="addCategory-existing-remove" onClick={deleteCategory(_id)}>Удалить</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

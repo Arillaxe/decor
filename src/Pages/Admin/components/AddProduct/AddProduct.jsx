@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
-import { UploadImage } from '..';
+import { UploadImage, Navigation } from '..';
 import './addProduct.css';
 
 const { host } = config;
@@ -135,88 +135,94 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="addProduct">
-      <div className="addProduct-title">Добавить товар</div>
-      <div className="addProduct-form">
-        <div className="addProduct-input">
-          <label htmlFor="product-title">Название товара</label>
-          <input id="product-title" type="text" onChange={updateField('title')} value={fields.title} />
-        </div>
-        <div className="addProduct-input">
-          <label htmlFor="product-category">Категория</label>
-          <select id="product-category" type="text" onChange={updateField('category')} value={fields.category}>
-          {categories.map(({ _id, name, title }) => (
-            <option key={_id} value={name}>{title}</option>
-          ))}
-          </select>
-        </div>
-        <div className="addProduct-input">
-          <label htmlFor="product-dimensions">Размеры</label>
-          <input id="product-dimensions" type="text" onChange={updateField('dimensions')} value={fields.dimensions} />
-        </div>
-        <div className="addProduct-input">
-          <label htmlFor="product-price">Цена</label>
-          <input id="product-price" type="text" onChange={updateField('price')} value={fields.price} />
-        </div>
-        <div className="addProduct-input">
-            <UploadImage id="product-image" label="Основная картинка" onChange={updateFieldByValue('image')} ref={imageRef} />
-        </div>
-        <div className="addProduct-input">
-            <UploadImage id="product-bgImage" label="Картинка заднего фона" onChange={updateFieldByValue('bgImage')} ref={bgImageRef} />
-        </div>
-        <div className="addProduct-input">
-          <label>Дополнительные изображения</label>
-          {additionalImagesFields.map(({ id, ref }, idx) => (
-            <div key={id} className="input-multiple">
-              <UploadImage id={`product-images-${id}`} onChange={updateImagesField(id)} ref={ref} />
-              {idx === additionalImagesFields.length - 1 ? (
-                <div className="input-multiple-button" onClick={addIdField}>
-                  <FontAwesomeIcon icon="plus" />
-                </div>
-              ) : (
-                <div className="input-multiple-button" onClick={removeIdField(id)}>
-                  <FontAwesomeIcon icon="times" />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="addProduct-input">
-          <label htmlFor="product-description">Описание</label>
-          <textarea id="product-description" onChange={updateField('description')} value={fields.description}></textarea>
-        </div>
-        <div className="addProduct-submit" onClick={submit}>Добавить</div>
-      </div>
-      <div className="addProduct-existing">
-        <div className="addProduct-existing-title">Существующие товары</div>
-        {!products.length && (
-          <div className="addProduct-existing-none">Товаров нет</div>
-        )}
-        {products.map((product) => (
-          <div key={product._id} className="addProduct-existing-product">
-            <div className="addProduct-existing-info">
-              <Link target="_blank" to={`/product/${product.category}/${product._id}`}>
-                <img src={product.imageURL} alt=""/>
-                <div className="addProduct-existing-name">{product.title}</div>
-              </Link>
-            </div>
-            <div className="addProduct-existing-details">
-              <div className="addProduct-existing-id">ID</div>
-              <div className="addProduct-existing-category">Категория</div>
-              <div className="addProduct-existing-dimensions">Размеры</div>
-              <div className="addProduct-existing-price">Цена</div>
-            </div>
-            <div className="addProduct-existing-details">
-              <div className="addProduct-existing-id">{product._id}</div>
-              <div className="addProduct-existing-category">{product.category}</div>
-              <div className="addProduct-existing-dimensions">{product.dimensions}</div>
-              <div className="addProduct-existing-price">{product.price} Р/шт</div>
-            </div>
-            <div className="addProduct-existing-remove" onClick={deleteProduct(product._id)}>Удалить</div>
+    <Fragment>
+      <Navigation />
+      <div className="addProduct">
+        <div className="addProduct-title">Добавить товар</div>
+        <div className="addProduct-form">
+          <div className="addProduct-input">
+            <label htmlFor="product-title">Название товара</label>
+            <input id="product-title" type="text" onChange={updateField('title')} value={fields.title} />
           </div>
-        ))}
+          <div className="addProduct-input">
+            <label htmlFor="product-category">Категория</label>
+            <select id="product-category" type="text" onChange={updateField('category')} value={fields.category}>
+            {categories.map(({ _id, name, title }) => (
+              <option key={_id} value={name}>{title}</option>
+            ))}
+            </select>
+          </div>
+          <div className="addProduct-input">
+            <label htmlFor="product-dimensions">Размеры</label>
+            <input id="product-dimensions" type="text" onChange={updateField('dimensions')} value={fields.dimensions} />
+          </div>
+          <div className="addProduct-input">
+            <label htmlFor="product-price">Цена</label>
+            <input id="product-price" type="text" onChange={updateField('price')} value={fields.price} />
+          </div>
+          <div className="addProduct-input">
+              <UploadImage id="product-image" label="Основная картинка" onChange={updateFieldByValue('image')} ref={imageRef} />
+          </div>
+          <div className="addProduct-input">
+              <UploadImage id="product-bgImage" label="Картинка заднего фона" onChange={updateFieldByValue('bgImage')} ref={bgImageRef} />
+          </div>
+          <div className="addProduct-input">
+            <label>Дополнительные изображения</label>
+            {additionalImagesFields.map(({ id, ref }, idx) => (
+              <div key={id} className="input-multiple">
+                <UploadImage id={`product-images-${id}`} onChange={updateImagesField(id)} ref={ref} />
+                {idx === additionalImagesFields.length - 1 ? (
+                  <div className="input-multiple-button" onClick={addIdField}>
+                    <FontAwesomeIcon icon="plus" />
+                  </div>
+                ) : (
+                  <div className="input-multiple-button" onClick={removeIdField(id)}>
+                    <FontAwesomeIcon icon="times" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="addProduct-input">
+            <label htmlFor="product-description">Описание</label>
+            <textarea id="product-description" onChange={updateField('description')} value={fields.description}></textarea>
+          </div>
+          <div className="addProduct-submit" onClick={submit}>Добавить</div>
+        </div>
+        <div className="addProduct-existing">
+          <div className="addProduct-existing-title">Существующие товары</div>
+          {!products.length && (
+            <div className="addProduct-existing-none">Товаров нет</div>
+          )}
+          {products.map((product) => (
+            <div key={product._id} className="addProduct-existing-product">
+              <div className="addProduct-existing-info">
+                <Link target="_blank" to={`/product/${product.category}/${product._id}`}>
+                  <img src={product.imageURL} alt=""/>
+                  <div className="addProduct-existing-name">{product.title}</div>
+                </Link>
+              </div>
+              <div className="addProduct-existing-details">
+                <div className="addProduct-existing-id">ID</div>
+                <div className="addProduct-existing-category">Категория</div>
+                <div className="addProduct-existing-dimensions">Размеры</div>
+                <div className="addProduct-existing-price">Цена</div>
+              </div>
+              <div className="addProduct-existing-details">
+                <div className="addProduct-existing-id">{product._id}</div>
+                <div className="addProduct-existing-category">{product.category}</div>
+                <div className="addProduct-existing-dimensions">{product.dimensions}</div>
+                <div className="addProduct-existing-price">{product.price} Р/шт</div>
+              </div>
+              <div className="addProduct-existing-edit">
+                <Link to={`/admin/product/${product._id}`}>Редактировать</Link>
+              </div>
+              <div className="addProduct-existing-remove" onClick={deleteProduct(product._id)}>Удалить</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../../../config';
 import './login.css';
 
 const { host } = config;
 
-const Login = (props) => {
-  const { setLoggedIn } = props;
-
+const Login = () => {
+  const history = useHistory();
   const [fields, setFields] = useState({ username: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  if (!!localStorage.getItem('token')) {
+    history.push('/admin/orders');
+  }
 
   const submit = async () => {
     if (loading) return;
@@ -26,7 +30,8 @@ const Login = (props) => {
 
       setError('');
       localStorage.setItem('token', res.data.token);
-      setLoggedIn(true);
+
+      history.push('/admin');
     } catch (e) {
       setError(e.response.data.error);
     }

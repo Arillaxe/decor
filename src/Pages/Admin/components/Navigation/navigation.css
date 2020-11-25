@@ -1,20 +1,18 @@
-.admin {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.admin-loggedIn {
-  width: 1200px;
-  background: #2c3033;
-  border-radius: 5px;
-  margin: 50px;
-}
-
 .admin-tabs {
   display: flex;
   border-bottom: 1px solid #f78888;
+  font-size: 18px;
+  width: 1200px;
+  background: #2c3033;
+  border-radius: 5px;
+  margin-top: 50px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.admin-tabs a {
+  color: inherit;
+  text-decoration: initial;
 }
 
 .admin-tab {

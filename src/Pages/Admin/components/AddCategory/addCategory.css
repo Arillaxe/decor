@@ -1,5 +1,11 @@
 .addCategory {
   padding: 30px;
+  width: 1200px;
+  background: #2c3033;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-sizing: border-box;
 }
 
 .addCategory-title {

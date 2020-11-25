@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Fragment } from 'react';
 import axios from 'axios';
 import config from '../../../../config';
-import { UploadImage } from '..';
+import { UploadImage, Navigation } from '..';
 import './gallery.css';
 
 const { host } = config;
@@ -88,25 +88,28 @@ const Gallery = () => {
   };
 
   return (
-    <div className="adminGallery">
-      <div className="adminGallery-title">Добавить изображение</div>
-      <UploadImage multiple ref={imageRef} id="gallery-upload" label="Выберите изображение" onChange={(value) => setFiles(value)} />
-      <div className="adminGallery-button" onClick={submitImage}>Загрузить</div>
-      <div className="adminGallery-title">Загруженные изображения</div>
-      {!!images.length && (
-        <div className="adminGallery-button-delete" onClick={deleteAll}>Удалить все</div>
-      )}
-      <div className="adminGallery-existing">
-        {!images.length && (
-          <div className="adminGallery-existing-none">Изображений нет</div>
+    <Fragment>
+      <Navigation />
+      <div className="adminGallery">
+        <div className="adminGallery-title">Добавить изображение</div>
+        <UploadImage multiple ref={imageRef} id="gallery-upload" label="Выберите изображение" onChange={(value) => setFiles(value)} />
+        <div className="adminGallery-button" onClick={submitImage}>Загрузить</div>
+        <div className="adminGallery-title">Загруженные изображения</div>
+        {!!images.length && (
+          <div className="adminGallery-button-delete" onClick={deleteAll}>Удалить все</div>
         )}
-        {images.map(({ _id, image }) => (
-          <div key={_id} className="imageCropper" onClick={deleteImage(_id)}>
-            <img src={image} alt=""/>
-          </div>
-        ))}
+        <div className="adminGallery-existing">
+          {!images.length && (
+            <div className="adminGallery-existing-none">Изображений нет</div>
+          )}
+          {images.map(({ _id, image }) => (
+            <div key={_id} className="imageCropper" onClick={deleteImage(_id)}>
+              <img src={image} alt=""/>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

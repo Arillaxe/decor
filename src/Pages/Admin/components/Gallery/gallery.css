@@ -1,5 +1,11 @@
 .adminGallery {
+  width: 1200px;
+  background: #2c3033;
+  border-radius: 5px;
   padding: 30px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-sizing: border-box;
 }
 
 .adminGallery-title {

@@ -1,0 +1,118 @@
+.editProduct {
+  font-size: 18px;
+  width: 1200px;
+  background: #2c3033;
+  border-radius: 5px;
+  padding: 30px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.editProduct-column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.editProduct-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.editProduct-form {
+  width: 300px;
+}
+
+.editProduct-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.editProduct-input label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.editProduct-input input, .editProduct-input textarea, .editProduct-input select {
+  font-size: 18px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+}
+
+.editProduct-input textarea {
+  height: 100px;
+}
+
+.editProduct-submit {
+  background: #f78888;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.editProduct .input-multiple {
+  align-items: center;
+}
+
+.editProduct .input-multiple-button {
+  height: 44px;
+  width: 44px;
+}
+
+.input-multiple .uploadImage-button {
+  margin-top: 0;
+}
+
+.input-multiple .uploadImage {
+  width: 100%;
+}
+
+.editProduct .input-multiple label {
+  width: 100%;
+}
+
+.editProduct .imageCropper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.editProduct .imageCropper img {
+  height: 100%;
+}
+
+.editProduct-existing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.editProduct .imageCropper::after {
+  display: none;
+  content: 'Удалить';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.editProduct .imageCropper:hover::after {
+  display: flex;
+}

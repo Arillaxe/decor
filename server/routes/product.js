@@ -84,6 +84,84 @@ router.put('/', verifyToken, async (req, res) => {
   res.json({ product });
 });
 
+router.post('/:id', verifyToken, async (req, res) => {
+  const { id } = req.params;
+
+  const product = await Product.findById(id);
+
+  if (!product) return res.status(404).json({ error: 'Product not found' });
+
+  const requiredFields = [
+    'title',
+    'category',
+    'description',
+    'dimensions',
+    'price',
+  ];
+
+  for (let field of requiredFields) {
+    if (!req.body[field]) return res.status(402).json({ error: 'Specify all required fields' });
+  }
+
+  const fileNames = {};
+
+  try {
+    for (let fileField in req.files) {
+      const file = req.files[fileField];
+      const ext = file.name.split('.').pop();
+
+      fileNames[fileField] = `${md5(file.name + Date.now())}.${ext}`;
+
+      await file.mv(path.join(__dirname, `../public/images/${fileNames[fileField]}`));
+    }
+  } catch (e) {
+    return res.status(502).json({ error: String(e) });
+  }
+
+  const publicImages = `${host}:${proxyPort}/images`;
+
+  const images = Object.keys(fileNames)
+    .filter((fieldName) => fieldName !== 'image' && fieldName !== 'bgImage')
+    .map((fieldName) => `${publicImages}/${fileNames[fieldName]}`);
+
+  const {
+    title,
+    category,
+    dimensions,
+    price,
+    description,
+  } = req.body;
+
+  product.title = title;
+  product.category = category;
+  product.description = description;
+  product.dimensions = dimensions;
+  product.price = price;
+  product.images = [...product.images, ...images];
+
+  console.log(product.images, images);
+
+  await product.save();
+
+  res.json({ product });
+});
+
+router.post('/image/:productId', verifyToken, async (req, res) => {
+  const { productId } = req.params;
+  const { imageURL } = req.body;
+
+  if (!imageURL) return res.status(402).json({ error: 'Specify imageURL' });
+
+  const product = await Product.findById(productId);
+
+  if (!product) return res.status(404).json({ error: 'Product not found' });
+
+  product.images = product.images.filter((image) => image !== imageURL);
+  await product.save();
+
+  res.sendStatus(200);
+});
+
 router.delete('/:id', verifyToken, async (req, res) => {
   const { id } = req.params;
 

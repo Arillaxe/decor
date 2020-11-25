@@ -18,7 +18,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTop } from './Components';
 import {
-  Admin,
   Cart,
   Category,
   Contacts,
@@ -27,8 +26,17 @@ import {
   Order,
   Product,
 } from './Pages';
+import { 
+  Orders as AdminOrders,
+  Login as AdminLogin,
+  AddProduct as AdminProduct,
+  AddCategory as AdminCategory,
+  AddHomeGrid as AdminHomeGrid,
+  Reviews as AdminReviews,
+  Gallery as AdminGallery,
+  EditProduct as AdminEditProduct, 
+} from './Pages/Admin/components';
 import store from './lib/store';
-import products from './data';
 import './App.css';
 
 library.add(
@@ -50,30 +58,21 @@ const App = () => {
         <Router>
           <ScrollToTop />
           <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/product/:type/:id">
-              <Product />
-            </Route>
-            <Route path="/product/:type">
-              <Category products={products} />
-            </Route>
-            <Route path="/cart">
-              <Cart />
-            </Route>
-            <Route path="/order">
-              <Order />
-            </Route>
-            <Route path="/contacts">
-              <Contacts />
-            </Route>
-            <Route path="/gallery">
-              <Gallery />
-            </Route>
-            <Route path="/admin">
-              <Admin />
-            </Route>
+            <Route path="/" exact component={Home} />
+            <Route path="/product/:type/:id" component={Product} />
+            <Route path="/product/:type" component={Category} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/order" component={Order} />
+            <Route path="/contacts" component={Contacts} />
+            <Route path="/gallery" component={Gallery} />
+            <Route path="/admin" exact component={AdminOrders} />
+            <Route path="/admin/login" component={AdminLogin} />
+            <Route path="/admin/product/:id" component={AdminEditProduct} />
+            <Route path="/admin/product" component={AdminProduct} />
+            <Route path="/admin/category" component={AdminCategory} />
+            <Route path="/admin/homeGrid" component={AdminHomeGrid} />
+            <Route path="/admin/reviews" component={AdminReviews} />
+            <Route path="/admin/gallery" component={AdminGallery} />
           </Switch>
         </Router>
       </div>
