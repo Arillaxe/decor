@@ -5,7 +5,7 @@ import './slider.css';
 const { host } = config;
 
 const Slider = () => {
-  const images = Array(5).fill(0).map((_, idx) => ({ original: `${host}/images/slides/${idx + 1}.jpg` }));
+  const images = Array(6).fill(0).map((_, idx) => ({ original: `${host}/images/slides/${idx + 1}.jpg` }));
 
   return (
     <div className="slider">
