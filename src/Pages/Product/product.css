@@ -10,7 +10,7 @@
   width: 1200px;
   height: 500px;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   border-bottom: 3px solid #f78888;
 }
