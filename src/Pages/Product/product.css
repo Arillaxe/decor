@@ -9,7 +9,7 @@
 .product-jumbotron {
   width: 1200px;
   height: 500px;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   border-bottom: 3px solid #f78888;
