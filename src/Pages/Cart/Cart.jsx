@@ -42,7 +42,7 @@ const Cart = () => {
     return aggregated;
   }, []);
 
-  const totalPrice = aggregatedProducts.reduce((total, { amount, product }) => total + amount * product.price, 0).toFixed(2);
+  const totalPrice = aggregatedProducts.reduce((total, { amount, product }) => total + amount * parseFloat(product.price), 0).toFixed(2);
 
   const removeFromCart = (id) => () => {
     dispatch(actions.setItems(items.filter(({ _id }) => _id !== id)));
@@ -114,7 +114,7 @@ const Cart = () => {
               <div className="cart-prices-heading">Количество</div>
               <div className="cart-prices-count">{amount}</div>
               <div className="cart-prices-price">{product.price} &#8381;</div>
-              <div className="cart-prices-cost">{(product.price * amount).toFixed(2)} &#8381;</div>
+              <div className="cart-prices-cost">{(parseFloat(product.price) * amount).toFixed(2)} &#8381;</div>
               <div className="cart-item-remove" onClick={removeFromCart(product._id)}>Удалить</div>
             </div>
           </div>
