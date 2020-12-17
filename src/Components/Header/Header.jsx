@@ -69,6 +69,9 @@ const Header = () => {
             <Link to="/gallery">
               <div className="header-bars-item">Галерея</div>
             </Link>
+            <Link to="/about">
+              <div className="header-bars-item">О нас</div>
+            </Link>
           </div>
         </div>
         <Link to="/">
@@ -113,6 +116,9 @@ const Header = () => {
           </Link>
           <Link to='/gallery'>
             <div className="header-menu-item">Галерея</div>
+          </Link>
+          <Link to="/about">
+            <div className="header-menu-item">О нас</div>
           </Link>
         </div>
       </div>

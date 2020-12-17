@@ -18,6 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ScrollToTop } from './Components';
 import {
+  About,
   Cart,
   Category,
   Contacts,
@@ -34,7 +35,7 @@ import {
   AddHomeGrid as AdminHomeGrid,
   Reviews as AdminReviews,
   Gallery as AdminGallery,
-  EditProduct as AdminEditProduct, 
+  EditProduct as AdminEditProduct,
 } from './Pages/Admin/components';
 import store from './lib/store';
 import './App.css';
@@ -61,6 +62,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <Route path="/product/:type/:id" component={Product} />
             <Route path="/product/:type" component={Category} />
+            <Route path="/about" component={About} />
             <Route path="/cart" component={Cart} />
             <Route path="/order" component={Order} />
             <Route path="/contacts" component={Contacts} />

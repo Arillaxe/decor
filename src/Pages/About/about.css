@@ -1,6 +1,9 @@
 .about {
   width: 1200px;
   margin-bottom: auto;
+  background: #2c3033;
+  padding: 0 30px 30px;
+  box-sizing: border-box;
 }
 
 .about-title {
