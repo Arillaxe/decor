@@ -11,3 +11,9 @@
   font-size: 36px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 1200px) {
+  .about {
+    width: 100%;
+  }
+}

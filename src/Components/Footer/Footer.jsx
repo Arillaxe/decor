@@ -24,6 +24,9 @@ const Footer = () => {
             <Link to="/gallery">
               <div className="footer-column-item">Галерея</div>
             </Link>
+            <Link to="/about">
+              <div className="footer-column-item">О нас</div>
+            </Link>
           </div>
           <div className="footer-menu-column">
             <div className="footer-column-title">Каталог</div>
