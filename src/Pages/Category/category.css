@@ -12,6 +12,10 @@
   font-weight: bold;
 }
 
+.category-description {
+  margin-bottom: 50px;
+}
+
 @media screen and (max-width: 1200px) {
   .category {
     width: 100%;
