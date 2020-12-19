@@ -63,8 +63,8 @@ const Header = () => {
               ))}
               </div>
             </div>
-            <Link to="/contacts">
-              <div className="header-bars-item">Контакты</div>
+            <Link to="/discounts">
+              <div className="header-bars-item">Скидки</div>
             </Link>
             <Link to="/gallery">
               <div className="header-bars-item">Галерея</div>
@@ -111,8 +111,8 @@ const Header = () => {
               <div className="header-dropdown-item"></div>
             </div>
           </div>
-          <Link to='/contacts'>
-            <div className="header-menu-item">Контакты</div>
+          <Link to='/discounts'>
+            <div className="header-menu-item">Скидки</div>
           </Link>
           <Link to='/gallery'>
             <div className="header-menu-item">Галерея</div>

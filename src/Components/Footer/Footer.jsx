@@ -18,8 +18,8 @@ const Footer = () => {
         <div className="footer-menu">
           <div className="footer-menu-column">
             <div className="footer-column-title">О компании</div>
-            <Link to="/contacts">
-              <div className="footer-column-item">Контакты</div>
+            <Link to="/discounts">
+              <div className="footer-column-item">Скидки</div>
             </Link>
             <Link to="/gallery">
               <div className="footer-column-item">Галерея</div>

@@ -1,0 +1,20 @@
+.discounts {
+  width: 1200px;
+  margin-bottom: auto;
+  background: #2c3033;
+  padding: 0 30px 30px;
+  box-sizing: border-box;
+}
+
+.discounts-title {
+  margin-top: 20px;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .discounts {
+    width: 100%;
+  }
+}
