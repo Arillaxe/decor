@@ -21,7 +21,6 @@ import {
   About,
   Cart,
   Category,
-  Contacts,
   Discounts,
   Gallery,
   Home,
@@ -67,7 +66,6 @@ const App = () => {
             <Route path="/cart" component={Cart} />
             <Route path="/discounts" component={Discounts} />
             <Route path="/order" component={Order} />
-            {/* <Route path="/contacts" component={Contacts} /> */}
             <Route path="/gallery" component={Gallery} />
             <Route path="/admin" exact component={AdminOrders} />
             <Route path="/admin/login" component={AdminLogin} />
