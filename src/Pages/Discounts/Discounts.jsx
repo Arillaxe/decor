@@ -6,7 +6,7 @@ const Discounts = () => {
   return (
     <Base>
       <div className="discounts">
-       <div className="discounts-title">Скидки</div>
+       <h1 className="discounts-title">Скидки</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',

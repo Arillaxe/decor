@@ -31,7 +31,7 @@ const Gallery = () => {
   return (
     <Base>
      <div className="gallery">
-       <div className="gallery-title">Галерея</div>
+       <h1 className="gallery-title">Галерея</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',

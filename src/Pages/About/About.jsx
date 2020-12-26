@@ -6,7 +6,7 @@ const About = () => {
   return (
     <Base>
      <div className="about">
-       <div className="about-title">О компании</div>
+       <h1 className="about-title">О компании</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',

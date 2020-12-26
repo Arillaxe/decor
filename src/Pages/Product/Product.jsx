@@ -128,7 +128,7 @@ const Product = () => {
           <div className="product-jumbotron" style={{ backgroundImage: `url(${bgImage})` }}></div>
           <div className="product-container">
             <div className="product-info">
-              <div className="product-info-title">{title}</div>
+              <h1 className="product-info-title">{title}</h1>
               <Breadcrumbs items={[
                 {
                   title: 'Главная',
@@ -167,7 +167,7 @@ const Product = () => {
           </div>
           {!!images.length && (
             <div className="product-additionalImages">
-              <div className="product-additionalImages-title">Дополнительные фото</div>
+              <h2 className="product-additionalImages-title">Дополнительные фото</h2>
               <div className="product-additionalImages-images">
                 {images.map((image, idx) => (
                   <div className="imageCropper">
@@ -191,7 +191,7 @@ const Product = () => {
             </div>
           )}
           <div className="product-reviews-container">
-            <div className="product-reviews-title">Отзывы</div>
+            <h2 className="product-reviews-title">Отзывы</h2>
             <div className="product-reviews">
               {!reviews.length && (
                 <div className="product-reviews-none">Отзывов нет</div>

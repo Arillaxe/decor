@@ -7,7 +7,7 @@ const Order = () => {
   return (
     <Base>
       <div className="order">
-        <div className="order-title">Ваш заказ принят</div>
+        <h1 className="order-title">Ваш заказ принят</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',

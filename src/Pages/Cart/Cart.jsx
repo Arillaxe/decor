@@ -83,7 +83,7 @@ const Cart = () => {
   return (
     <Base>
       <div className="cart">
-        <div className="cart-title">Корзина {!!items.length && (<Fragment>/ <span className="cart-title-counter">{items.length} шт.</span></Fragment>)}</div>
+        <h1 className="cart-title">Корзина {!!items.length && (<Fragment>/ <span className="cart-title-counter">{items.length} шт.</span></Fragment>)}</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',

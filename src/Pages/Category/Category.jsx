@@ -117,7 +117,7 @@ const Category = () => {
   return (
     <Base>
       <div className="category">
-        <div className="category-title">{category.title}</div>
+        <h1 className="category-title">{category.title}</h1>
         <Breadcrumbs items={[
           {
             title: 'Главная',
