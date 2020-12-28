@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import { Base } from '..';
 import { Breadcrumbs } from '../../Components';
 import './about.css';
 
 const About = () => {
+  useEffect(() => {
+    document.title = 'О нас | Гипсовые панели 3д купить в Симферополе для внутренней отделки';
+  }, []);
+
   return (
     <Base>
      <div className="about">

@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import { Base } from '..';
 import { Breadcrumbs } from '../../Components';
 import './discounts.css';
 
 const Discounts = () => {
+  useEffect(() => {
+    document.title = 'Скидки | Гипсовые панели 3д купить в Симферополе для внутренней отделки';
+  }, []);
+
   return (
     <Base>
       <div className="discounts">

@@ -30,6 +30,10 @@ const Cart = () => {
     dispatch(actions.setItems(JSON.parse(localStorage.getItem('cart')) || []));
   }, [dispatch]);
 
+  useEffect(() => {
+    document.title = 'Корзина | Гипсовые панели 3д купить в Симферополе для внутренней отделки';
+  }, []);
+
   const aggregatedProducts = items.reduce((aggregated, product) => {
     const existing = aggregated.find(({ product: { _id } }) => _id === product._id);
 

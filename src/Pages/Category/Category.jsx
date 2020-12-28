@@ -17,7 +17,12 @@ const Category = () => {
   const products = useSelector(({ products }) => products);
   const categories = useSelector(({ categories }) => categories);
   const { type } = useParams();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const category = categories.find(({ name }) => name === type) || {};
+
+  useEffect(() => {
+    document.title = `${category.title} | Гипсовые панели 3д купить в Симферополе для внутренней отделки`;
+  }, [category]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +32,6 @@ const Category = () => {
     };
 
     fetchData();
-
   }, [dispatch]);
 
   const descriptions = {

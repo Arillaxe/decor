@@ -23,6 +23,10 @@ const Gallery = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    document.title = 'Галерея | Гипсовые панели 3д купить в Симферополе для внутренней отделки';
+  }, []);
+
   const openImage = (index = 0) => {
     setImageIndex(index);
     setVisible(true);

@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Base } from '..';
 import { Breadcrumbs} from '../../Components';
 import './order.css';
 
 const Order = () => {
+  useEffect(() => {
+    document.title = 'Ваш заказ принят | Гипсовые панели 3д купить в Симферополе для внутренней отделки';
+  }, []);
+
   return (
     <Base>
       <div className="order">

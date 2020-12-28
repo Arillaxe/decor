@@ -51,6 +51,10 @@ const Product = () => {
 
   const product = products.find((product) => product._id === id);
 
+  useEffect(() => {
+    document.title = `${product && product.title} | Гипсовые панели 3д купить в Симферополе для внутренней отделки`;
+  }, [product]);
+
   const {
     title,
     description,
