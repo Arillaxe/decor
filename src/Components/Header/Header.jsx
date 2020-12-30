@@ -76,7 +76,7 @@ const Header = () => {
         </div>
         <Link to="/">
           <div className="header-title">
-            <div className="header-title-big">3D Decor</div>
+            <div className="header-title-big">3D-Gips</div>
             <div className="header-title-small">Crimea</div>
           </div>
         </Link>

@@ -7,4 +7,5 @@ export { default as Header } from './Header';
 export { default as HomeGrid } from './HomeGrid';
 export { default as Loader } from './Loader';
 export { default as ScrollToTop } from './ScrollToTop';
+export { default as Sidemenu } from './Sidemenu';
 export { default as Slider } from './Slider';

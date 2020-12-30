@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import config from '../../config';
 import { Base } from '..';
-import { HomeGrid, Slider } from '../../Components';
+import { HomeGrid, Slider, Sidemenu } from '../../Components';
 import { homeGridsSlice, productsSlice } from '../../slices';
 import './home.css';
 
@@ -37,9 +37,12 @@ const Home = () => {
     <Base>
       <div className="home">
         <Slider />
-        {homeGrids.map(({ _id, title, products: homeGridProducts }) => (
-          <HomeGrid key={_id} items={products.filter(({ _id }) => homeGridProducts.includes(_id))} type="panel" title={title} />
-        ))}
+        <section>
+          <Sidemenu />
+          {homeGrids.map(({ _id, title, products: homeGridProducts }) => (
+            <HomeGrid key={_id} items={products.filter(({ _id }) => homeGridProducts.includes(_id))} type="panel" title={title} />
+          ))}
+        </section>
       </div>
     </Base>
   );

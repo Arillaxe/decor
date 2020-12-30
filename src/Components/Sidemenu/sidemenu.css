@@ -1,0 +1,30 @@
+.sidemenu {
+  display: flex;
+  flex-direction: column;
+  background-color: #191a1b;
+  width: 250px;
+}
+
+.sidemenu-title {
+  padding: 10px 30px;
+  margin: 0;
+}
+
+.sidemenu a {
+  color: inherit;
+  text-decoration: initial;
+}
+
+.sidemenu-item {
+  padding: 10px 30px;
+}
+
+.sidemenu-item:hover {
+  background-color: #2c3033;
+}
+
+@media screen and (max-width: 1200px) {
+  .sidemenu {
+    display: none;
+  }
+}

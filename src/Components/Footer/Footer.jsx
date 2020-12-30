@@ -40,7 +40,7 @@ const Footer = () => {
       </div>
       <div className="footer-container footer-copyrights">
         <div className="footer-copyrights-copy">
-          <div>©2020 3D Decor Crimea™</div>
+          <div>©2020 3D Gips Crimea™</div>
           <div>Официальный сайт</div>
         </div>
         <div className="footer-copyrights-text">

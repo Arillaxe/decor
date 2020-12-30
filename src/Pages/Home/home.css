@@ -1,3 +1,8 @@
 .home {
   margin-bottom: auto;
 }
+
+
+.home section {
+  display: flex;
+}
