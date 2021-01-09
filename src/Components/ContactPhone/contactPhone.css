@@ -6,3 +6,7 @@
 .contactPhone-phone {
   font-size: calc(20px + 2 * ((100vw - 980px) / 220));
 }
+
+.contactPhone-phone a {
+  color: inherit;
+}
