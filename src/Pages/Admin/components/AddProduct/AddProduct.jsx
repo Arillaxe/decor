@@ -214,7 +214,7 @@ const AddProduct = () => {
                 <div className="addProduct-existing-id">{product._id}</div>
                 <div className="addProduct-existing-category">{product.category}</div>
                 <div className="addProduct-existing-dimensions">{product.dimensions}</div>
-                <div className="addProduct-existing-price">{product.price} Р/шт</div>
+                <div className="addProduct-existing-price">{product.price}</div>
               </div>
               <div className="addProduct-existing-edit">
                 <Link to={`/admin/product/${product._id}`}>Редактировать</Link>
